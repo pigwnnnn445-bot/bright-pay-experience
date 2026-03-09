@@ -40,7 +40,7 @@ const ProductCard = ({ product, selected, onSelect }: ProductCardProps) => {
       )}
 
       {/* Title */}
-      <p className={cn("text-sm font-medium text-title", product.badgeText && "mt-3")}>{product.title}</p>
+      <p className="mt-3 text-sm font-medium text-title line-clamp-1">{product.title}</p>
 
       {/* Price */}
       <div className="mt-2">
