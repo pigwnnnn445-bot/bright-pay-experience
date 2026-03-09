@@ -9,7 +9,6 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, selected, onSelect }: ProductCardProps) => {
   const disabled = !product.isSaleable;
-  const discount = product.originalPrice - product.salePrice;
 
   return (
     <button
@@ -17,11 +16,10 @@ const ProductCard = ({ product, selected, onSelect }: ProductCardProps) => {
       disabled={disabled}
       onClick={() => !disabled && onSelect(product)}
       className={cn(
-        "relative w-full rounded-xl border-2 p-4 text-left transition-all duration-200 cursor-pointer",
-        "hover:shadow-card",
+        "relative flex min-w-[150px] shrink-0 flex-col items-center rounded-xl border-2 px-4 py-5 text-center transition-all duration-200 cursor-pointer",
         selected
-          ? "border-primary bg-primary/5 shadow-card"
-          : "border-border bg-card hover:border-primary/40",
+          ? "border-primary bg-primary/[0.03] scale-[1.04] shadow-card"
+          : "border-border bg-card hover:border-primary/30",
         disabled && "pointer-events-none opacity-40"
       )}
     >
@@ -29,34 +27,43 @@ const ProductCard = ({ product, selected, onSelect }: ProductCardProps) => {
       {product.badgeText && (
         <span
           className={cn(
-            "absolute -top-2.5 right-3 inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold text-primary-foreground",
+            "absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-0.5 text-[10px] font-semibold text-primary-foreground",
             product.badgeType === "recommend"
               ? "bg-gradient-to-r from-theme-purple to-theme-green"
-              : "bg-theme-green"
+              : product.badgeType === "value"
+                ? "bg-destructive"
+                : "bg-theme-green"
           )}
         >
           {product.badgeText}
         </span>
       )}
 
-      <p className="text-sm font-semibold text-title">{product.title}</p>
+      {/* Title */}
+      <p className="text-sm font-medium text-title">{product.title}</p>
 
-      <div className="mt-2 flex items-baseline gap-1.5">
-        <span className="text-xl font-bold text-primary">
+      {/* Price */}
+      <div className="mt-3">
+        <span className={cn(
+          "text-2xl font-bold",
+          selected ? "text-primary" : "text-title"
+        )}>
           {product.currency}{product.salePrice.toFixed(2)}
-        </span>
-        <span className="text-xs text-text-muted line-through">
-          {product.currency}{product.originalPrice.toFixed(2)}
         </span>
       </div>
 
-      <p className="mt-1 text-xs text-text-secondary">{product.subTitle}</p>
+      {/* Original price */}
+      <p className="mt-1 text-xs text-text-muted line-through">
+        {product.currency}{product.originalPrice.toFixed(2)}
+      </p>
 
-      {selected && discount > 0 && (
-        <p className="mt-1.5 text-[10px] font-medium text-theme-green">
-          已省 {product.currency}{discount.toFixed(2)}
-        </p>
-      )}
+      {/* Sub text */}
+      <p className={cn(
+        "mt-3 text-[11px] leading-relaxed",
+        selected ? "text-theme-green font-medium" : "text-text-secondary"
+      )}>
+        {product.subTitle}
+      </p>
     </button>
   );
 };
