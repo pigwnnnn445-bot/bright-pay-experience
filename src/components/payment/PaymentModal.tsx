@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import modalBg from "@/assets/modal-bg.webp";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import type { UserProfile, ProductType, DisplayProduct, BenefitConfig } from "@/types/payment";
@@ -102,7 +103,8 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
           />
 
           <motion.div
-            className="relative z-10 flex w-full max-w-[980px] max-lg:max-w-full h-[600px] max-lg:h-full max-lg:max-h-screen flex-col overflow-hidden rounded-2xl max-lg:rounded-none bg-card shadow-modal lg:flex-row"
+            className="relative z-10 flex w-full max-w-[980px] max-lg:max-w-full h-[600px] max-lg:h-full max-lg:max-h-screen flex-col overflow-hidden rounded-2xl max-lg:rounded-none shadow-modal lg:flex-row"
+            style={{ backgroundImage: `url(${modalBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 20 }}
