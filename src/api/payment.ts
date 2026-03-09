@@ -121,9 +121,10 @@ const mockSkuPrices: SkuPrice[] = [
   { skuId: "s2", skuCode: "sku_m_30", salePrice: 25.88, originalPrice: 50.88, currency: "¥", isSaleable: true },
   { skuId: "s3", skuCode: "sku_m_90", salePrice: 64.88, originalPrice: 128.88, currency: "¥", isSaleable: true },
   { skuId: "s4", skuCode: "sku_m_365", salePrice: 198.88, originalPrice: 398.88, currency: "¥", isSaleable: true },
-  { skuId: "s5", skuCode: "sku_a_100", salePrice: 9.9, originalPrice: 19.9, currency: "¥", isSaleable: true },
-  { skuId: "s6", skuCode: "sku_a_500", salePrice: 39.9, originalPrice: 79.9, currency: "¥", isSaleable: true },
-  { skuId: "s7", skuCode: "sku_a_2000", salePrice: 129.9, originalPrice: 259.9, currency: "¥", isSaleable: true },
+  { skuId: "s5", skuCode: "sku_a_100", salePrice: 4.98, originalPrice: 7.98, currency: "¥", isSaleable: true },
+  { skuId: "s6", skuCode: "sku_a_200", salePrice: 9.58, originalPrice: 23.98, currency: "¥", isSaleable: true },
+  { skuId: "s7", skuCode: "sku_a_500", salePrice: 23.88, originalPrice: 62.88, currency: "¥", isSaleable: true },
+  { skuId: "s8", skuCode: "sku_a_1000", salePrice: 45.88, originalPrice: 179.98, currency: "¥", isSaleable: true },
 ];
 
 const mockBenefitConfigs: BenefitConfig[] = [
