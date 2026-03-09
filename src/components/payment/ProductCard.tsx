@@ -22,7 +22,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
         isAddon ? "w-full px-4 py-4" : "w-[170px] min-w-[170px] shrink-0 px-4 py-3",
         selected
           ? "border-primary bg-primary/[0.03] scale-[1.02] shadow-card"
-          : "border-border bg-card hover:border-primary/30",
+          : "border-[hsl(240_15%_92%)] bg-card hover:border-primary/30",
         disabled && "pointer-events-none opacity-40"
       )}
     >
