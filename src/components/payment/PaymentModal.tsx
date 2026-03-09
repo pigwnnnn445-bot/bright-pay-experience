@@ -29,7 +29,6 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch data
   useEffect(() => {
     if (!open) return;
     setLoading(true);
@@ -42,7 +41,6 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
         setAllProducts(products);
         setAllBenefits(benefitRes.filter((b) => b.isOnline).sort((a, b) => a.sort - b.sort));
 
-        // Auto-select default
         const tabProducts = products.filter((p) => p.productType === "membership" && p.isSaleable);
         const defaultP = tabProducts.find((p) => p.isDefault) || tabProducts[0];
         if (defaultP) setSelectedId(defaultP.configId);
@@ -51,16 +49,12 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
       .finally(() => setLoading(false));
   }, [open]);
 
-  // Filtered products for current tab
   const filteredProducts = allProducts.filter(
     (p) => p.productType === activeTab && p.isSaleable
   );
-
   const filteredBenefits = allBenefits.filter((b) => b.productType === activeTab);
-
   const selectedProduct = allProducts.find((p) => p.configId === selectedId) || null;
 
-  // Tab change
   const handleTabChange = useCallback(
     (tab: ProductType) => {
       setActiveTab(tab);
@@ -77,14 +71,12 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
 
   const handlePay = useCallback(
     (params: { skuId: string; skuCode: string; productType: string; userId: string }) => {
-      // TODO: 接入真实支付接口
       console.log("发起支付:", params);
       alert(`支付参数准备完毕\nSKU: ${params.skuCode}\n金额: ${selectedProduct?.currency}${selectedProduct?.salePrice}`);
     },
     [selectedProduct]
   );
 
-  // ESC close
   useEffect(() => {
     if (!open) return;
     const handler = (e: KeyboardEvent) => {
@@ -104,48 +96,41 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          {/* Overlay */}
           <motion.div
-            className="absolute inset-0 bg-foreground/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-foreground/30 backdrop-blur-sm"
             onClick={onClose}
           />
 
-          {/* Modal */}
           <motion.div
-            className="relative z-10 flex w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-card shadow-modal lg:flex-row"
+            className="relative z-10 flex w-full max-w-[960px] flex-col overflow-hidden rounded-2xl bg-card shadow-modal lg:flex-row"
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 20 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
             style={{ maxHeight: "90vh" }}
           >
-            {/* Close button */}
+            {/* Close */}
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-3 top-3 z-20 flex h-8 w-8 items-center justify-center rounded-full text-text-secondary transition-colors hover:bg-hover-bg hover:text-title cursor-pointer"
+              className="absolute right-4 top-4 z-20 flex h-8 w-8 items-center justify-center rounded-full text-text-muted transition-colors hover:bg-hover-bg hover:text-title cursor-pointer"
             >
               <X className="h-4 w-4" />
             </button>
 
-            {/* Left content */}
-            <div className="flex-1 overflow-y-auto p-6 lg:pr-0">
+            {/* Left: main content */}
+            <div className="flex-1 overflow-y-auto p-6">
               {error ? (
                 <div className="flex h-48 items-center justify-center">
                   <p className="text-sm text-destructive">{error}</p>
                 </div>
               ) : (
                 <>
-                  {/* User info */}
                   <UserProfileHeader user={user} loading={loading} />
 
-                  {/* Tabs */}
-                  <div className="mt-5">
+                  {/* Product area with border */}
+                  <div className="mt-5 rounded-xl border border-border">
                     <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
-                  </div>
-
-                  {/* Product cards */}
-                  <div className="mt-4">
                     <ProductCardList
                       products={filteredProducts}
                       selectedId={selectedId}
@@ -160,8 +145,8 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
               )}
             </div>
 
-            {/* Right payment panel */}
-            <div className="w-full shrink-0 border-t border-border p-4 lg:w-64 lg:border-l lg:border-t-0 lg:p-5">
+            {/* Right: payment panel */}
+            <div className="w-full shrink-0 border-t border-border p-5 lg:w-[220px] lg:border-l lg:border-t-0">
               <PaymentSummaryPanel
                 product={selectedProduct}
                 userId={user?.id || ""}

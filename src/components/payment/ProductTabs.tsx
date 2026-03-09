@@ -13,20 +13,23 @@ const tabs: { key: ProductType; label: string }[] = [
 
 const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
   return (
-    <div className="flex gap-1 rounded-full bg-card-alt p-1">
+    <div className="flex border-b border-border">
       {tabs.map((tab) => (
         <button
           key={tab.key}
           type="button"
           onClick={() => onTabChange(tab.key)}
           className={cn(
-            "rounded-full px-5 py-1.5 text-sm font-medium transition-all duration-200 cursor-pointer",
+            "relative px-6 py-3 text-sm font-medium transition-colors duration-200 cursor-pointer",
             activeTab === tab.key
-              ? "bg-menu-selected text-title shadow-sm"
-              : "text-text-secondary hover:text-title"
+              ? "text-title"
+              : "text-text-muted hover:text-text-secondary"
           )}
         >
           {tab.label}
+          {activeTab === tab.key && (
+            <span className="absolute bottom-0 left-1/2 h-0.5 w-12 -translate-x-1/2 rounded-full bg-primary" />
+          )}
         </button>
       ))}
     </div>
