@@ -23,11 +23,11 @@ const ProductCard = ({ product, selected, onSelect }: ProductCardProps) => {
         disabled && "pointer-events-none opacity-40"
       )}
     >
-      {/* Badge */}
+      {/* Badge - top left */}
       {product.badgeText && (
         <span
           className={cn(
-            "absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-0.5 text-[10px] font-semibold text-primary-foreground",
+            "absolute -top-px -left-px rounded-tl-[10px] rounded-br-[10px] px-2.5 py-1 text-[10px] font-semibold text-primary-foreground",
             product.badgeType === "recommend"
               ? "bg-gradient-to-r from-theme-purple to-theme-green"
               : product.badgeType === "value"
