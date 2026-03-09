@@ -21,8 +21,8 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
         "relative flex flex-col items-center rounded-xl border-2 text-center transition-all duration-200 cursor-pointer",
         isAddon ? "w-full px-4 py-4" : "w-[170px] min-w-[170px] shrink-0 px-4 py-3",
         selected
-          ? "border-primary bg-primary/[0.03] scale-[1.02] shadow-card"
-          : "border-border-card bg-card hover:border-primary/30",
+          ? "border-primary bg-background scale-[1.02] shadow-card"
+          : "border-border-card bg-background hover:border-primary/30",
         disabled && "pointer-events-none opacity-40"
       )}
     >
