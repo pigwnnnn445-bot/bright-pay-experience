@@ -128,9 +128,13 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                 <>
                   <UserProfileHeader user={user} loading={loading} />
 
-                  {/* Product area with border */}
-                  <div className="mt-5 rounded-xl border border-border">
+                  {/* Tab switcher */}
+                  <div className="mt-5">
                     <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
+                  </div>
+
+                  {/* Product cards */}
+                  <div className="mt-3 rounded-xl border border-border">
                     <ProductCardList
                       products={filteredProducts}
                       selectedId={selectedId}
