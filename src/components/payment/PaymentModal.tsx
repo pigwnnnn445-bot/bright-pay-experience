@@ -90,7 +90,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -102,12 +102,11 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
           />
 
           <motion.div
-            className="relative z-10 flex w-full max-w-[960px] flex-col overflow-hidden rounded-2xl bg-card shadow-modal lg:flex-row"
+            className="relative z-10 flex w-full max-w-[980px] max-lg:max-w-full h-[600px] max-lg:h-full max-lg:max-h-screen flex-col overflow-hidden rounded-2xl max-lg:rounded-none bg-card shadow-modal lg:flex-row"
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 20 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            style={{ maxHeight: "90vh" }}
           >
             {/* Close */}
             <button
