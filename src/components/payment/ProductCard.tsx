@@ -5,10 +5,12 @@ interface ProductCardProps {
   product: DisplayProduct;
   selected: boolean;
   onSelect: (product: DisplayProduct) => void;
+  variant?: "default" | "addon";
 }
 
-const ProductCard = ({ product, selected, onSelect }: ProductCardProps) => {
+const ProductCard = ({ product, selected, onSelect, variant = "default" }: ProductCardProps) => {
   const disabled = !product.isSaleable;
+  const isAddon = variant === "addon";
 
   return (
     <button
@@ -16,9 +18,10 @@ const ProductCard = ({ product, selected, onSelect }: ProductCardProps) => {
       disabled={disabled}
       onClick={() => !disabled && onSelect(product)}
       className={cn(
-        "relative flex w-[170px] min-w-[170px] shrink-0 flex-col items-center rounded-xl border-2 px-4 py-3 text-center transition-all duration-200 cursor-pointer",
+        "relative flex flex-col items-center rounded-xl border-2 text-center transition-all duration-200 cursor-pointer",
+        isAddon ? "w-full px-4 py-4" : "w-[170px] min-w-[170px] shrink-0 px-4 py-3",
         selected
-          ? "border-primary bg-primary/[0.03] scale-[1.04] shadow-card"
+          ? "border-primary bg-primary/[0.03] scale-[1.02] shadow-card"
           : "border-border bg-card hover:border-primary/30",
         disabled && "pointer-events-none opacity-40"
       )}
