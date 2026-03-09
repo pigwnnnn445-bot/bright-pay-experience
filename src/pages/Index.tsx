@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Sun, Moon } from "lucide-react";
 import PaymentEntryButton from "@/components/payment/PaymentEntryButton";
 import PaymentModal from "@/components/payment/PaymentModal";
 
 const Index = () => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
@@ -11,6 +17,14 @@ const Index = () => {
         <h1 className="mb-2 text-3xl font-bold text-title">升级您的计划</h1>
         <p className="mb-8 text-text-secondary">解锁全部专业功能，提升工作效率</p>
         <PaymentEntryButton onClick={() => setModalOpen(true)} />
+        <button
+          type="button"
+          onClick={() => setDark((d) => !d)}
+          className="mt-4 inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:bg-hover-bg hover:text-title cursor-pointer"
+        >
+          {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          {dark ? "亮色模式" : "暗色模式"}
+        </button>
       </div>
 
       <PaymentModal open={modalOpen} onClose={() => setModalOpen(false)} />
