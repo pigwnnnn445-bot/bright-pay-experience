@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import modalBg from "@/assets/modal-bg.webp";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import type { UserProfile, ProductType, DisplayProduct, BenefitConfig } from "@/types/payment";
