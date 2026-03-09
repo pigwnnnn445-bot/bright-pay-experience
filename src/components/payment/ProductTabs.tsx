@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import type { ProductType } from "@/types/payment";
 import { cn } from "@/lib/utils";
 
@@ -13,22 +14,27 @@ const tabs: { key: ProductType; label: string }[] = [
 
 const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
   return (
-    <div className="flex border-b border-border">
+    <div className="relative flex w-full rounded-2xl bg-card-alt p-1">
       {tabs.map((tab) => (
         <button
           key={tab.key}
           type="button"
           onClick={() => onTabChange(tab.key)}
           className={cn(
-            "relative px-6 py-3 text-sm font-medium transition-colors duration-200 cursor-pointer",
+            "relative z-10 flex-1 py-2.5 text-sm font-medium transition-colors duration-200 cursor-pointer rounded-xl",
             activeTab === tab.key
-              ? "text-title"
+              ? "text-title font-semibold"
               : "text-text-muted hover:text-text-secondary"
           )}
         >
           {tab.label}
           {activeTab === tab.key && (
-            <span className="absolute bottom-0 left-1/2 h-0.5 w-12 -translate-x-1/2 rounded-full bg-primary" />
+            <motion.div
+              layoutId="tab-indicator"
+              className="absolute inset-0 rounded-xl bg-menu-selected shadow-card"
+              style={{ zIndex: -1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            />
           )}
         </button>
       ))}
