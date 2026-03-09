@@ -127,26 +127,27 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                 <>
                   <UserProfileHeader user={user} loading={loading} />
 
-                  {/* Tab switcher */}
-                  <div className="mt-5">
+                  {/* Wrapped content area */}
+                  <div className="mt-5 rounded-2xl border border-border bg-background p-4">
+                    {/* Tab switcher */}
                     <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
-                  </div>
 
-                  {/* Product cards */}
-                  <div className="mt-3 rounded-xl border border-border">
-                    <ProductCardList
-                      products={filteredProducts}
-                      selectedId={selectedId}
-                      onSelect={handleSelect}
-                      loading={loading}
-                      productType={activeTab}
-                    />
-                  </div>
+                    {/* Product cards */}
+                    <div className="mt-3">
+                      <ProductCardList
+                        products={filteredProducts}
+                        selectedId={selectedId}
+                        onSelect={handleSelect}
+                        loading={loading}
+                        productType={activeTab}
+                      />
+                    </div>
 
-                  {/* Benefits - only for membership */}
-                  {activeTab === "membership" && (
-                    <BenefitSection benefits={filteredBenefits} loading={loading} />
-                  )}
+                    {/* Benefits - only for membership */}
+                    {activeTab === "membership" && (
+                      <BenefitSection benefits={filteredBenefits} loading={loading} />
+                    )}
+                  </div>
                 </>
               )}
             </div>
