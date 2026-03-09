@@ -1,4 +1,4 @@
-import { Zap, Infinity, Shield, Star, PlusCircle, Clock, type LucideIcon } from "lucide-react";
+import { Zap, Infinity, Shield, Star, PlusCircle, Clock, Crown, HardDrive, type LucideIcon } from "lucide-react";
 import type { BenefitConfig } from "@/types/payment";
 
 const iconMap: Record<string, LucideIcon> = {
@@ -8,6 +8,8 @@ const iconMap: Record<string, LucideIcon> = {
   star: Star,
   "plus-circle": PlusCircle,
   clock: Clock,
+  crown: Crown,
+  "hard-drive": HardDrive,
 };
 
 interface BenefitItemProps {
