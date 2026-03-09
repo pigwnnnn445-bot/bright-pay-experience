@@ -59,7 +59,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
     (tab: ProductType) => {
       setActiveTab(tab);
       const tabProducts = allProducts.filter((p) => p.productType === tab && p.isSaleable);
-      const defaultP = tabProducts.find((p) => p.isDefault) || tabProducts[0];
+      const defaultP = tabProducts[1] || tabProducts[0];
       setSelectedId(defaultP?.configId || null);
     },
     [allProducts]
