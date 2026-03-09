@@ -28,7 +28,8 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 15% 88%;
+    --border: 240 15% 92%;
+    --border-card: 240 15% 92%;
     --input: 240 15% 88%;
     --ring: 240 73.9% 61%;
 
