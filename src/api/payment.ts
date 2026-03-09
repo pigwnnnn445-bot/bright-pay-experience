@@ -115,12 +115,14 @@ const mockSkuPrices: SkuPrice[] = [
 ];
 
 const mockBenefitConfigs: BenefitConfig[] = [
-  { benefitId: "b1", productType: "membership", icon: "zap", title: "极速生成", description: "AI 模型优先调度，响应更快", isOnline: true, sort: 1 },
-  { benefitId: "b2", productType: "membership", icon: "infinity", title: "高额配额", description: "每日配额大幅提升，满足高频需求", isOnline: true, sort: 2 },
-  { benefitId: "b3", productType: "membership", icon: "shield", title: "专属客服", description: "工作日 1v1 专属技术支持", isOnline: true, sort: 3 },
-  { benefitId: "b4", productType: "membership", icon: "star", title: "新功能抢先", description: "优先体验最新 AI 能力", isOnline: true, sort: 4 },
-  { benefitId: "b5", productType: "addon", icon: "plus-circle", title: "即买即用", description: "配额实时到账，无需等待", isOnline: true, sort: 1 },
-  { benefitId: "b6", productType: "addon", icon: "clock", title: "永不过期", description: "加量包配额不限使用期限", isOnline: true, sort: 2 },
+  { benefitId: "b1", productType: "membership", icon: "crown", title: "高级特权", description: "解锁全部高级功能，优先体验最新AI能力", isOnline: true, sort: 1 },
+  { benefitId: "b2", productType: "membership", icon: "infinity", title: "高额配额", description: "每日配额大幅提升，满足高频计算需求", isOnline: true, sort: 2 },
+  { benefitId: "b3", productType: "membership", icon: "shield", title: "隐私保护", description: "数据专属加密通道，全面保护您的隐私安全", isOnline: true, sort: 3 },
+  { benefitId: "b4", productType: "membership", icon: "hard-drive", title: "超大容量", description: "尊享扩容云端存储空间，保留更多历史记录", isOnline: true, sort: 4 },
+  { benefitId: "b5", productType: "membership", icon: "zap", title: "极速生成", description: "AI 模型优先调度，极速响应告别排队", isOnline: true, sort: 5 },
+  { benefitId: "b6", productType: "membership", icon: "star", title: "专属标识", description: "尊贵 Pro 会员专属身份标识与个性主页", isOnline: true, sort: 6 },
+  { benefitId: "b7", productType: "addon", icon: "plus-circle", title: "即买即用", description: "配额实时到账，无需等待", isOnline: true, sort: 1 },
+  { benefitId: "b8", productType: "addon", icon: "clock", title: "永不过期", description: "加量包配额不限使用期限", isOnline: true, sort: 2 },
 ];
 
 // ========== API Simulation ==========
