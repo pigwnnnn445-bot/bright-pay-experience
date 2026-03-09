@@ -1,0 +1,182 @@
+import type {
+  UserProfile,
+  ProductConfig,
+  SkuPrice,
+  BenefitConfig,
+  DisplayProduct,
+} from "@/types/payment";
+
+// ========== Mock Data ==========
+
+const mockUserProfile: UserProfile = {
+  id: "u_001",
+  avatar: "",
+  nickname: "Alex Chen",
+  badge: "专业版",
+  expireTime: "2026/12/28",
+  expireTip: "您的会员将于 2026/12/28 到期，购买后有效期顺延",
+};
+
+const mockProductConfigs: ProductConfig[] = [
+  {
+    configId: "cfg_1",
+    productType: "membership",
+    title: "Pro套餐15天",
+    subTitle: "包含570配额，日均价仅¥1.05",
+    badgeText: "推荐套餐",
+    badgeType: "recommend",
+    isOnline: true,
+    isDefault: false,
+    sort: 1,
+    skuCode: "sku_m_15",
+  },
+  {
+    configId: "cfg_2",
+    productType: "membership",
+    title: "Pro套餐30天",
+    subTitle: "包含1200配额，日均价仅¥0.86",
+    badgeText: "性价比最高",
+    badgeType: "value",
+    isOnline: true,
+    isDefault: true,
+    sort: 2,
+    skuCode: "sku_m_30",
+  },
+  {
+    configId: "cfg_3",
+    productType: "membership",
+    title: "Pro套餐90天",
+    subTitle: "包含4000配额，日均价仅¥0.72",
+    badgeText: "",
+    badgeType: "",
+    isOnline: true,
+    isDefault: false,
+    sort: 3,
+    skuCode: "sku_m_90",
+  },
+  {
+    configId: "cfg_4",
+    productType: "membership",
+    title: "Pro套餐365天",
+    subTitle: "包含18000配额，日均价仅¥0.55",
+    badgeText: "",
+    badgeType: "",
+    isOnline: true,
+    isDefault: false,
+    sort: 4,
+    skuCode: "sku_m_365",
+  },
+  {
+    configId: "cfg_5",
+    productType: "addon",
+    title: "配额加量包 100",
+    subTitle: "适合临时用量补充",
+    badgeText: "",
+    badgeType: "",
+    isOnline: true,
+    isDefault: true,
+    sort: 1,
+    skuCode: "sku_a_100",
+  },
+  {
+    configId: "cfg_6",
+    productType: "addon",
+    title: "配额加量包 500",
+    subTitle: "高频使用推荐",
+    badgeText: "热销",
+    badgeType: "recommend",
+    isOnline: true,
+    isDefault: false,
+    sort: 2,
+    skuCode: "sku_a_500",
+  },
+  {
+    configId: "cfg_7",
+    productType: "addon",
+    title: "配额加量包 2000",
+    subTitle: "团队级别大容量",
+    badgeText: "",
+    badgeType: "",
+    isOnline: true,
+    isDefault: false,
+    sort: 3,
+    skuCode: "sku_a_2000",
+  },
+];
+
+const mockSkuPrices: SkuPrice[] = [
+  { skuId: "s1", skuCode: "sku_m_15", salePrice: 15.88, originalPrice: 25.88, currency: "¥", isSaleable: true },
+  { skuId: "s2", skuCode: "sku_m_30", salePrice: 25.88, originalPrice: 50.88, currency: "¥", isSaleable: true },
+  { skuId: "s3", skuCode: "sku_m_90", salePrice: 64.88, originalPrice: 128.88, currency: "¥", isSaleable: true },
+  { skuId: "s4", skuCode: "sku_m_365", salePrice: 198.88, originalPrice: 398.88, currency: "¥", isSaleable: true },
+  { skuId: "s5", skuCode: "sku_a_100", salePrice: 9.9, originalPrice: 19.9, currency: "¥", isSaleable: true },
+  { skuId: "s6", skuCode: "sku_a_500", salePrice: 39.9, originalPrice: 79.9, currency: "¥", isSaleable: true },
+  { skuId: "s7", skuCode: "sku_a_2000", salePrice: 129.9, originalPrice: 259.9, currency: "¥", isSaleable: true },
+];
+
+const mockBenefitConfigs: BenefitConfig[] = [
+  { benefitId: "b1", productType: "membership", icon: "zap", title: "极速生成", description: "AI 模型优先调度，响应更快", isOnline: true, sort: 1 },
+  { benefitId: "b2", productType: "membership", icon: "infinity", title: "高额配额", description: "每日配额大幅提升，满足高频需求", isOnline: true, sort: 2 },
+  { benefitId: "b3", productType: "membership", icon: "shield", title: "专属客服", description: "工作日 1v1 专属技术支持", isOnline: true, sort: 3 },
+  { benefitId: "b4", productType: "membership", icon: "star", title: "新功能抢先", description: "优先体验最新 AI 能力", isOnline: true, sort: 4 },
+  { benefitId: "b5", productType: "addon", icon: "plus-circle", title: "即买即用", description: "配额实时到账，无需等待", isOnline: true, sort: 1 },
+  { benefitId: "b6", productType: "addon", icon: "clock", title: "永不过期", description: "加量包配额不限使用期限", isOnline: true, sort: 2 },
+];
+
+// ========== API Simulation ==========
+
+const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+export async function getUserProfile(): Promise<UserProfile> {
+  await delay(300);
+  return mockUserProfile;
+}
+
+export async function getProductConfigs(): Promise<ProductConfig[]> {
+  await delay(200);
+  return mockProductConfigs;
+}
+
+export async function getSkuPrices(): Promise<SkuPrice[]> {
+  await delay(200);
+  return mockSkuPrices;
+}
+
+export async function getBenefitConfigs(): Promise<BenefitConfig[]> {
+  await delay(200);
+  return mockBenefitConfigs;
+}
+
+// ========== Data Assembly ==========
+
+export function buildDisplayProducts(
+  configs: ProductConfig[],
+  skus: SkuPrice[]
+): DisplayProduct[] {
+  const skuMap = new Map(skus.map((s) => [s.skuCode, s]));
+
+  return configs
+    .filter((c) => c.isOnline)
+    .map((c) => {
+      const sku = skuMap.get(c.skuCode);
+      if (!sku) return null;
+      return {
+        configId: c.configId,
+        skuId: sku.skuId,
+        skuCode: c.skuCode,
+        productType: c.productType,
+        title: c.title,
+        subTitle: c.subTitle,
+        badgeText: c.badgeText,
+        badgeType: c.badgeType,
+        salePrice: sku.salePrice,
+        originalPrice: sku.originalPrice,
+        currency: sku.currency,
+        isSaleable: sku.isSaleable,
+        isDefault: c.isDefault,
+        sort: c.sort,
+      } as DisplayProduct;
+    })
+    .filter((p): p is DisplayProduct => p !== null)
+    .sort((a, b) => a.sort - b.sort);
+}
