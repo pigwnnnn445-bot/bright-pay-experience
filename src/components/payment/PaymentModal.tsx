@@ -143,8 +143,10 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                     />
                   </div>
 
-                  {/* Benefits */}
-                  <BenefitSection benefits={filteredBenefits} loading={loading} />
+                  {/* Benefits - only for membership */}
+                  {activeTab === "membership" && (
+                    <BenefitSection benefits={filteredBenefits} loading={loading} />
+                  )}
                 </>
               )}
             </div>
