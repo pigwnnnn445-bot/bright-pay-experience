@@ -42,7 +42,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
         setAllBenefits(benefitRes.filter((b) => b.isOnline).sort((a, b) => a.sort - b.sort));
 
         const tabProducts = products.filter((p) => p.productType === "membership" && p.isSaleable);
-        const defaultP = tabProducts.find((p) => p.isDefault) || tabProducts[0];
+        const defaultP = tabProducts[1] || tabProducts[0];
         if (defaultP) setSelectedId(defaultP.configId);
       })
       .catch(() => setError("数据加载失败，请稍后重试"))
