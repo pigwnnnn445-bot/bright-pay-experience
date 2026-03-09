@@ -139,6 +139,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                       selectedId={selectedId}
                       onSelect={handleSelect}
                       loading={loading}
+                      productType={activeTab}
                     />
                   </div>
 

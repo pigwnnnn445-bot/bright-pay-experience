@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import type { DisplayProduct } from "@/types/payment";
+import type { DisplayProduct, ProductType } from "@/types/payment";
 import ProductCard from "./ProductCard";
 
 interface ProductCardListProps {
@@ -8,12 +8,14 @@ interface ProductCardListProps {
   selectedId: string | null;
   onSelect: (product: DisplayProduct) => void;
   loading?: boolean;
+  productType?: ProductType;
 }
 
-const ProductCardList = ({ products, selectedId, onSelect, loading }: ProductCardListProps) => {
+const ProductCardList = ({ products, selectedId, onSelect, loading, productType }: ProductCardListProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const isAddon = productType === "addon";
 
   const checkScroll = () => {
     const el = scrollRef.current;
@@ -35,9 +37,9 @@ const ProductCardList = ({ products, selectedId, onSelect, loading }: ProductCar
 
   if (loading) {
     return (
-      <div className="flex gap-3 p-4">
+      <div className={isAddon ? "grid grid-cols-2 gap-3 p-4" : "flex gap-3 p-4"}>
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-36 w-[150px] shrink-0 animate-pulse rounded-xl bg-muted" />
+          <div key={i} className="h-36 w-full shrink-0 animate-pulse rounded-xl bg-muted" />
         ))}
       </div>
     );
@@ -47,6 +49,22 @@ const ProductCardList = ({ products, selectedId, onSelect, loading }: ProductCar
     return (
       <div className="flex h-36 items-center justify-center">
         <p className="text-sm text-text-muted">暂无可用商品</p>
+      </div>
+    );
+  }
+
+  if (isAddon) {
+    return (
+      <div className="grid grid-cols-2 gap-3 p-4">
+        {products.map((p) => (
+          <ProductCard
+            key={p.configId}
+            product={p}
+            selected={selectedId === p.configId}
+            onSelect={onSelect}
+            variant="addon"
+          />
+        ))}
       </div>
     );
   }
@@ -68,7 +86,6 @@ const ProductCardList = ({ products, selectedId, onSelect, loading }: ProductCar
         ))}
       </div>
 
-      {/* Scroll arrows */}
       {canScrollLeft && (
         <button
           type="button"
