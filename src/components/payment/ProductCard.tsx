@@ -16,7 +16,7 @@ const ProductCard = ({ product, selected, onSelect }: ProductCardProps) => {
       disabled={disabled}
       onClick={() => !disabled && onSelect(product)}
       className={cn(
-        "relative flex min-w-[150px] shrink-0 flex-col items-center rounded-xl border-2 px-4 py-4 text-center transition-all duration-200 cursor-pointer",
+        "relative flex w-[170px] min-w-[170px] shrink-0 flex-col items-center rounded-xl border-2 px-4 py-3 text-center transition-all duration-200 cursor-pointer",
         selected
           ? "border-primary bg-primary/[0.03] scale-[1.04] shadow-card"
           : "border-border bg-card hover:border-primary/30",
