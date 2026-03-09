@@ -16,7 +16,7 @@ const ProductCard = ({ product, selected, onSelect }: ProductCardProps) => {
       disabled={disabled}
       onClick={() => !disabled && onSelect(product)}
       className={cn(
-        "relative flex min-w-[150px] shrink-0 flex-col items-center rounded-xl border-2 px-4 py-5 text-center transition-all duration-200 cursor-pointer",
+        "relative flex min-w-[150px] shrink-0 flex-col items-center rounded-xl border-2 px-4 py-4 text-center transition-all duration-200 cursor-pointer",
         selected
           ? "border-primary bg-primary/[0.03] scale-[1.04] shadow-card"
           : "border-border bg-card hover:border-primary/30",
@@ -43,7 +43,7 @@ const ProductCard = ({ product, selected, onSelect }: ProductCardProps) => {
       <p className="text-sm font-medium text-title">{product.title}</p>
 
       {/* Price */}
-      <div className="mt-3">
+      <div className="mt-2">
         <span className={cn(
           "text-2xl font-bold",
           selected ? "text-primary" : "text-title"
@@ -58,10 +58,7 @@ const ProductCard = ({ product, selected, onSelect }: ProductCardProps) => {
       </p>
 
       {/* Sub text */}
-      <p className={cn(
-        "mt-3 text-[11px] leading-relaxed",
-        selected ? "text-theme-green font-medium" : "text-text-secondary"
-      )}>
+      <p className="text-xs font-medium py-1 px-[14px] rounded-[10px] break-words overflow-hidden m-[2px] bg-payment-bg-1/10 text-payment-text-1">
         {product.subTitle}
       </p>
     </button>
