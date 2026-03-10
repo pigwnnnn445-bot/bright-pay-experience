@@ -41,7 +41,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
 
       {/* Price */}
       <div className="mt-4">
-        <span className="text-[40px] leading-tight font-bold text-primary">
+        <span className="text-[32px] leading-[40px] font-bold text-primary" style={{ fontFamily: 'Gilroy, sans-serif', fontWeight: 700 }}>
           {product.currency}{product.salePrice.toFixed(2)}
         </span>
       </div>
