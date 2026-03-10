@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import type { ProductType } from "@/types/payment";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
@@ -16,6 +16,8 @@ const tabs: { key: ProductType; label: string }[] = [
   { key: "membership", label: "会员套餐" },
   { key: "addon", label: "加量包" },
 ];
+
+const springTransition = { type: "spring" as const, stiffness: 350, damping: 30 };
 
 const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
   const { theme } = useTheme();
@@ -53,18 +55,18 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
                   borderRadius: isLeft ? "16px 0 0 0" : "0 16px 0 0",
                   zIndex: 0,
                 }}
-                transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                transition={springTransition}
               />
             )}
 
-            {/* Curve connectors — always rendered, opacity animated */}
+            {/* Curve connectors — always rendered, spring-synced opacity */}
             {isLeft && (
               <motion.img
                 src={curveLeft}
                 alt=""
                 className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
                 animate={{ opacity: isActive ? 1 : 0 }}
-                transition={{ duration: 0.35, ease: "easeInOut" }}
+                transition={springTransition}
               />
             )}
             {!isLeft && (
@@ -73,7 +75,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
                 alt=""
                 className="absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none"
                 animate={{ opacity: isActive ? 1 : 0 }}
-                transition={{ duration: 0.35, ease: "easeInOut" }}
+                transition={springTransition}
               />
             )}
           </button>
