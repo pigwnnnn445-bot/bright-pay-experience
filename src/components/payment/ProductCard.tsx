@@ -37,20 +37,14 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       )}
 
       {/* Title */}
-      <p
-        className="absolute w-[75px] h-5 text-center line-clamp-1"
-        style={{ left: "44.5px", top: "32px", fontFamily: "Gilroy, sans-serif", fontSize: "14px", fontWeight: 500, lineHeight: "20px", letterSpacing: "-0.14px", color: "#323233" }}
-      >{product.title}</p>
+      <p className="mt-5 text-sm font-medium text-title line-clamp-1">{product.title}</p>
 
       {/* Price */}
-      <div
-        className="absolute flex items-baseline justify-center"
-        style={{ left: "22px", top: "52px", width: "120px", height: "40px" }}
-      >
-        <span className="inline-block w-5 h-6 text-[20px] leading-6" style={{ fontFamily: "Gilroy, sans-serif", fontWeight: 700, color: "#5252E5" }}>{product.currency}</span>
-        <span
-          style={{ fontFamily: "Gilroy, sans-serif", fontSize: "32px", fontWeight: "bold", lineHeight: "40px", letterSpacing: "-0.14px", color: "#5252E5", fontFeatureSettings: '"kern" on' }}
-        >{product.salePrice.toFixed(2)}</span>
+      <div className="mt-4">
+        <span className="inline-flex items-baseline text-primary" style={{ fontFamily: 'Gilroy, sans-serif', fontWeight: 700 }}>
+          <span className="inline-block w-5 h-6 text-[20px] leading-6">{product.currency}</span>
+          <span className="text-[32px] leading-[40px]">{product.salePrice.toFixed(2)}</span>
+        </span>
       </div>
 
       {/* Original price */}
