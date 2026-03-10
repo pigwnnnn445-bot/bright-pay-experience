@@ -48,7 +48,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       {/* Title */}
       <p className={cn(
         "text-sm font-medium text-title line-clamp-1",
-        isAddon ? "absolute top-[28px]" : "mt-5"
+        isAddon ? "absolute top-[15%]" : "mt-5"
       )}>{product.title}</p>
 
       {/* Price */}
