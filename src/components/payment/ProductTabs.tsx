@@ -38,7 +38,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
               "relative flex-1 py-3 text-base font-medium transition-colors duration-300 cursor-pointer",
               isActive
                 ? "text-title font-semibold"
-                : "text-text-muted hover:text-text-secondary bg-white/60 backdrop-blur-[10px] dark:bg-transparent dark:backdrop-blur-[10px]"
+                : "text-text-muted hover:text-text-secondary bg-white/60 backdrop-blur-[10px] dark:bg-transparent dark:backdrop-blur-none"
             )}
           >
             <span className="relative z-10">{tab.label}</span>
