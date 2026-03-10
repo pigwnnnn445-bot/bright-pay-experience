@@ -60,7 +60,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
             {/* Left curve when right tab (addon) is selected */}
             {isActive && !isLeft && (
               <img
-                src={tabCurveLeft}
+                src={tabCurveRight}
                 alt=""
                 className="absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none"
               />
