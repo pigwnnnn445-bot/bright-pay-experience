@@ -155,7 +155,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
             </div>
 
             {/* Right: payment panel */}
-            <div className="w-full shrink-0 border-t border-border p-5 lg:pt-[118px] lg:w-[220px] lg:border-l lg:border-t-0">
+            <div className="w-full shrink-0 border-t border-border p-5 lg:pt-[118px] lg:w-[220px] lg:border-t-0">
               <PaymentSummaryPanel
                 product={selectedProduct}
                 userId={user?.id || ""}

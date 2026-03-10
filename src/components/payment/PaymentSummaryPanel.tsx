@@ -64,16 +64,10 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
         </button>
       </div>
 
-      {/* WeChat section */}
-      <div className="mt-5 text-center">
-        <p className="text-sm text-text-secondary">微信扫码支付</p>
-        <div className="mt-3 flex items-center justify-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-theme-green/10">
-            <QrCode className="h-5 w-5 text-theme-green" />
-          </div>
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-            <QrCode className="h-5 w-5 text-primary" />
-          </div>
+      {/* QR code placeholder */}
+      <div className="mt-5 flex items-center justify-center">
+        <div className="flex h-[164px] w-[164px] items-center justify-center rounded-lg border border-border bg-card-alt">
+          <QrCode className="h-10 w-10 text-text-muted" />
         </div>
       </div>
 
