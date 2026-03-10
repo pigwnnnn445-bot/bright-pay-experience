@@ -225,6 +225,13 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
         </motion.div>
       )}
     </AnimatePresence>
+
+      <PaymentSuccessModal
+        open={showSuccessModal}
+        orderId={paidOrderId}
+        onClose={() => setShowSuccessModal(false)}
+      />
+    </>
   );
 };
 
