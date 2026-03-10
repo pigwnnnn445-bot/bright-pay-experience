@@ -171,7 +171,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
 
                     {/* Mobile: payment method selector */}
                     {isMobile && (
-                      <div className="mt-3 border-t border-border pt-3">
+                      <div className="mt-5 px-1">
                         <MobilePayMethodSelector
                           payMethod={mobilePayMethod}
                           onSwitch={setMobilePayMethod}
