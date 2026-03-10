@@ -119,7 +119,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
         } catch {}
       }, 2000);
     } catch {
-      alert("支付失败，请重试");
+      setShowFailModal(true);
       setMobilePaying(false);
     }
   }, [selectedProduct, user, mobilePayMethod]);
