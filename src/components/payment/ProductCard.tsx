@@ -69,9 +69,9 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
 
       {/* Sub text */}
       <p className={cn(
-        "absolute rounded-[10px] text-xs font-medium flex items-center justify-center break-words overflow-hidden",
+        "absolute rounded-[10px] text-xs font-medium flex items-center justify-center break-words overflow-hidden px-2",
         isAddon
-          ? "left-[1px] top-[148px] w-[298px] h-[40px]"
+          ? "left-[1px] right-[1px] bottom-[1px] h-[40px]"
           : "left-[1px] top-[140px] w-[160px] h-[40px]",
         selected ? "text-payment-text-1 bg-payment-bg-1/10" : "text-title bg-[#F2F2F5]"
       )}>
