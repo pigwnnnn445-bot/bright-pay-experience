@@ -115,7 +115,6 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
       alert("支付失败，请重试");
       setMobilePaying(false);
     }
-    }
   }, [selectedProduct, user, mobilePayMethod]);
 
   useEffect(() => {
