@@ -33,10 +33,13 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
           className={cn(
             "absolute text-xs font-medium px-2 py-1 rounded-lg rounded-bl-none min-w-6 min-h-6",
             isAddon
-              ? "top-[4px] left-[4px] text-payment-text-5 bg-[image:var(--payment-gradient-bg-1)]"
+              ? "top-[4px] left-[4px]"
               : "-left-0.5 text-xs font-medium"
           )}
-          style={!isAddon ? { top: "-12px", color: "#EF534F", backgroundImage: "linear-gradient(90deg, #FDE3E3 0%, #FDE6F3 100%)" } : undefined}
+          style={isAddon
+            ? { color: "#EF534F", backgroundImage: "linear-gradient(90deg, #FCD2D0 0%, #FCD7EB 100%)" }
+            : { top: "-12px", color: "#EF534F", backgroundImage: "linear-gradient(90deg, #FDE3E3 0%, #FDE6F3 100%)" }
+          }
         >
           {product.badgeText}
         </span>
