@@ -15,7 +15,6 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
   const [paying, setPaying] = useState(false);
   const [payStatus, setPayStatus] = useState<"idle" | "paying" | "paid" | "failed">("idle");
   const [agreements, setAgreements] = useState<AgreementLink[]>([]);
-  const [agreements, setAgreements] = useState<AgreementLink[]>([]);
   const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const currentOrderIdRef = useRef<string | null>(null);
 
