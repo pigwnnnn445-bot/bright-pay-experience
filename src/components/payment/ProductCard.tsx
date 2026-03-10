@@ -19,7 +19,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       onClick={() => !disabled && onSelect(product)}
       className={cn(
         "relative flex flex-col items-center rounded-xl border-2 text-center transition-all duration-200 cursor-pointer",
-        isAddon ? "w-full px-4 py-4" : "w-[170px] min-w-[170px] shrink-0 px-4 py-3",
+        isAddon ? "w-full px-4 py-4" : "w-[164px] h-[182px] min-w-[164px] shrink-0 px-0 py-0",
         selected
           ? "border-primary bg-background scale-[1.02] shadow-card"
           : "border-border-card bg-background hover:border-primary/30",
@@ -52,7 +52,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       </p>
 
       {/* Sub text */}
-      <p className={cn("text-xs font-medium py-1 px-[10px] rounded-[10px] break-words overflow-hidden mx-1 mt-4 w-[calc(100%-8px)] bg-payment-bg-1/10", selected ? "text-payment-text-1" : "text-title")}>
+      <p className={cn("text-xs font-medium py-1 px-[10px] rounded-[10px] break-words overflow-hidden mt-4 w-[160px] h-[40px] flex items-center justify-center bg-payment-bg-1/10", selected ? "text-payment-text-1" : "text-title")}>
         {product.subTitle}
       </p>
     </button>

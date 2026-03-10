@@ -73,7 +73,7 @@ const ProductCardList = ({ products, selectedId, onSelect, loading, productType 
     <div className="relative">
       <div
         ref={scrollRef}
-        className="flex gap-3 overflow-x-auto p-4 pb-4 scrollbar-hide"
+        className="flex gap-5 overflow-x-auto p-4 pb-4 scrollbar-hide"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {products.map((p) => (
