@@ -199,3 +199,61 @@ export function buildDisplayProducts(
     .filter((p): p is DisplayProduct => p !== null)
     .sort((a, b) => a.sort - b.sort);
 }
+
+// ========== Payment Order API (Mock) ==========
+
+// In-memory order store for simulation
+const orderStore = new Map<string, { status: OrderStatus; payMethod: string }>();
+
+let orderCounter = 0;
+
+export async function createOrder(params: CreateOrderParams): Promise<PaymentOrder> {
+  await delay(500);
+  orderCounter++;
+  const orderId = `order_${Date.now()}_${orderCounter}`;
+  const sku = mockSkuPrices.find((s) => s.skuCode === params.skuCode);
+
+  // Store order with "paying" status
+  orderStore.set(orderId, { status: "paying", payMethod: params.payMethod });
+
+  // Simulate auto-payment after 8 seconds
+  setTimeout(() => {
+    const order = orderStore.get(orderId);
+    if (order && order.status === "paying") {
+      order.status = "paid";
+    }
+  }, 8000);
+
+  // Generate a mock QR code URL (using a public QR code API for demo)
+  const qrContent = encodeURIComponent(
+    `${params.payMethod === "wechat" ? "wxp" : "alipay"}://pay?order=${orderId}&amount=${sku?.salePrice || 0}`
+  );
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=164x164&data=${qrContent}`;
+
+  return {
+    orderId,
+    status: "paying",
+    qrCodeUrl,
+    payMethod: params.payMethod,
+    amount: sku?.salePrice || 0,
+    currency: sku?.currency || "¥",
+    createdAt: new Date().toISOString(),
+  };
+}
+
+export async function getOrderStatus(orderId: string): Promise<OrderStatusResult> {
+  await delay(300);
+  const order = orderStore.get(orderId);
+  return {
+    orderId,
+    status: order?.status || "pending",
+  };
+}
+
+export async function cancelOrder(orderId: string): Promise<void> {
+  await delay(200);
+  const order = orderStore.get(orderId);
+  if (order && order.status === "paying") {
+    order.status = "cancelled";
+  }
+}
