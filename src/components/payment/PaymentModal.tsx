@@ -25,6 +25,7 @@ import PaymentSummaryPanel from "./PaymentSummaryPanel";
 import MobilePayMethodSelector from "./MobilePayMethodSelector";
 import MobilePayBottomBar from "./MobilePayBottomBar";
 import PaymentSuccessModal from "./PaymentSuccessModal";
+import PaymentFailModal from "./PaymentFailModal";
 
 interface PaymentModalProps {
   open: boolean;
@@ -48,6 +49,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
   const [mobilePaying, setMobilePaying] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [paidOrderId, setPaidOrderId] = useState<string>("");
+  const [showFailModal, setShowFailModal] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -112,12 +114,12 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
           } else if (result.status === "failed" || result.status === "cancelled" || result.status === "expired") {
             clearInterval(pollInterval);
             setMobilePaying(false);
-            alert("支付失败，请重试");
+            setShowFailModal(true);
           }
         } catch {}
       }, 2000);
     } catch {
-      alert("支付失败，请重试");
+      setShowFailModal(true);
       setMobilePaying(false);
     }
   }, [selectedProduct, user, mobilePayMethod]);
@@ -246,6 +248,10 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
           setShowSuccessModal(false);
           onClose();
         }}
+      />
+      <PaymentFailModal
+        open={showFailModal}
+        onClose={() => setShowFailModal(false)}
       />
     </>
   );

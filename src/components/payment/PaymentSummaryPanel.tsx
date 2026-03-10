@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import type { DisplayProduct, PayMethod, PaymentOrder, AgreementLink } from "@/types/payment";
 import { QrCode, CheckCircle, Loader2 } from "lucide-react";
 import { createOrder, getOrderStatus, cancelOrder, getAgreementLinks } from "@/api/payment";
+import PaymentFailModal from "./PaymentFailModal";
 
 interface PaymentSummaryPanelProps {
   product: DisplayProduct | null;
@@ -17,6 +18,7 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
   const [paying, setPaying] = useState(false);
   const [payStatus, setPayStatus] = useState<"idle" | "paying" | "paid" | "failed">("idle");
   const [agreements, setAgreements] = useState<AgreementLink[]>([]);
+  const [showFailModal, setShowFailModal] = useState(false);
   const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const currentOrderIdRef = useRef<string | null>(null);
 
@@ -67,6 +69,7 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
           }
         } else if (result.status === "failed" || result.status === "cancelled" || result.status === "expired") {
           setPayStatus("failed");
+          setShowFailModal(true);
           if (pollingRef.current) {
             clearInterval(pollingRef.current);
             pollingRef.current = null;
@@ -97,6 +100,7 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
       startPolling(newOrder.orderId);
     } catch {
       setPayStatus("failed");
+      setShowFailModal(true);
     } finally {
       setPaying(false);
     }
@@ -260,6 +264,11 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
       {payStatus === "failed" && (
         <p className="mt-2 text-xs text-destructive">支付失败，请重试</p>
       )}
+
+      <PaymentFailModal
+        open={showFailModal}
+        onClose={() => setShowFailModal(false)}
+      />
 
       {/* Footer */}
       <p className="mt-auto pt-4 text-center text-[10px] leading-relaxed text-text-muted">
