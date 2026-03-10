@@ -70,13 +70,6 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
     setSelectedId(product.configId);
   }, []);
 
-  const handlePay = useCallback(
-    (params: { skuId: string; skuCode: string; productType: string; userId: string }) => {
-      console.log("发起支付:", params);
-      alert(`支付参数准备完毕\nSKU: ${params.skuCode}\n金额: ${selectedProduct?.currency}${selectedProduct?.salePrice}`);
-    },
-    [selectedProduct]
-  );
 
   useEffect(() => {
     if (!open) return;
@@ -159,7 +152,6 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
               <PaymentSummaryPanel
                 product={selectedProduct}
                 userId={user?.id || ""}
-                onPay={handlePay}
               />
             </div>
           </motion.div>

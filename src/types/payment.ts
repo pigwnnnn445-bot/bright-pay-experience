@@ -60,3 +60,39 @@ export interface DisplayProduct {
   isDefault: boolean;
   sort: number;
 }
+
+// ========== Payment Order Types ==========
+
+export type PayMethod = "wechat" | "alipay";
+
+export type OrderStatus =
+  | "pending"      // 待支付
+  | "paying"       // 支付中
+  | "paid"         // 支付成功
+  | "failed"       // 支付失败
+  | "cancelled"    // 已取消
+  | "refunded"     // 已退款
+  | "expired";     // 已过期
+
+export interface CreateOrderParams {
+  skuId: string;
+  skuCode: string;
+  productType: string;
+  userId: string;
+  payMethod: PayMethod;
+}
+
+export interface PaymentOrder {
+  orderId: string;
+  status: OrderStatus;
+  qrCodeUrl: string;
+  payMethod: PayMethod;
+  amount: number;
+  currency: string;
+  createdAt: string;
+}
+
+export interface OrderStatusResult {
+  orderId: string;
+  status: OrderStatus;
+}
