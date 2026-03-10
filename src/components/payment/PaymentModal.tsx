@@ -41,6 +41,8 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
   // Mobile payment state
   const [mobilePayMethod, setMobilePayMethod] = useState<PayMethod>("wechat");
   const [mobilePaying, setMobilePaying] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [paidOrderId, setPaidOrderId] = useState<string>("");
 
   useEffect(() => {
     if (!open) return;
