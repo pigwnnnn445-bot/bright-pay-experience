@@ -174,7 +174,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                   <UserProfileHeader user={user} loading={loading} />
 
                   {/* Wrapped content area */}
-                  <div className="mt-5 rounded-2xl border border-border bg-background p-4">
+                  <div className="mt-5 rounded-2xl bg-background p-4">
                     {/* Tab switcher */}
                     <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
