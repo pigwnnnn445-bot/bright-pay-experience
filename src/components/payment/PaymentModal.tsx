@@ -152,7 +152,6 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
               <PaymentSummaryPanel
                 product={selectedProduct}
                 userId={user?.id || ""}
-                onPay={handlePay}
               />
             </div>
           </motion.div>
