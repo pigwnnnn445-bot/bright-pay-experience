@@ -14,6 +14,8 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
   const [order, setOrder] = useState<PaymentOrder | null>(null);
   const [paying, setPaying] = useState(false);
   const [payStatus, setPayStatus] = useState<"idle" | "paying" | "paid" | "failed">("idle");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [paidOrderId, setPaidOrderId] = useState<string>("");
   const [agreements, setAgreements] = useState<AgreementLink[]>([]);
   const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const currentOrderIdRef = useRef<string | null>(null);
