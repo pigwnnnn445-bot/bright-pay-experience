@@ -169,21 +169,21 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                       />
                     </div>
 
+                    {/* Mobile: payment method selector */}
+                    {isMobile && (
+                      <div className="mt-3 border-t border-border pt-3">
+                        <MobilePayMethodSelector
+                          payMethod={mobilePayMethod}
+                          onSwitch={setMobilePayMethod}
+                        />
+                      </div>
+                    )}
+
                     {/* Benefits - only for membership */}
                     {activeTab === "membership" && (
                       <BenefitSection benefits={filteredBenefits} loading={loading} />
                     )}
                   </div>
-
-                  {/* Mobile: payment method selector (outside card) */}
-                  {isMobile && (
-                    <div className="mt-4 rounded-2xl border border-border bg-background px-4">
-                      <MobilePayMethodSelector
-                        payMethod={mobilePayMethod}
-                        onSwitch={setMobilePayMethod}
-                      />
-                    </div>
-                  )}
                 </>
               )}
             </div>
