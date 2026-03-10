@@ -10,6 +10,8 @@ interface PaymentSummaryPanelProps {
 }
 
 const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSummaryPanelProps) => {
+  const onPaymentSuccessRef = useRef(onPaymentSuccess);
+  onPaymentSuccessRef.current = onPaymentSuccess;
   const [payMethod, setPayMethod] = useState<PayMethod>("wechat");
   const [order, setOrder] = useState<PaymentOrder | null>(null);
   const [paying, setPaying] = useState(false);
