@@ -61,7 +61,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
               {isActive && isLeft && (
                 <motion.img
                   key="curve-left"
-                  src={tabCurveLeft}
+                  src={curveLeft}
                   alt=""
                   className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
                   initial={{ opacity: 0 }}
