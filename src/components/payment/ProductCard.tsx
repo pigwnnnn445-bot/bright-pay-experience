@@ -37,7 +37,10 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       )}
 
       {/* Title */}
-      <p className="mt-5 text-sm font-medium text-title line-clamp-1">{product.title}</p>
+      <p
+        className="absolute w-[75px] h-5 text-center line-clamp-1"
+        style={{ left: "44.5px", top: "32px", fontFamily: "Gilroy, sans-serif", fontSize: "14px", fontWeight: 500, lineHeight: "20px", letterSpacing: "-0.14px", color: "#323233" }}
+      >{product.title}</p>
 
       {/* Price */}
       <div className="mt-4">
