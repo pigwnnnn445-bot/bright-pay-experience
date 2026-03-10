@@ -184,7 +184,7 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
                 type="button"
                 onClick={handlePay}
                 disabled={paying}
-                className="mt-4 w-[102px] h-[32px] rounded-lg bg-primary text-xs font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center"
+                className="mt-4 w-[102px] h-[32px] rounded-lg bg-primary text-xs font-semibold text-primary-foreground dark:text-black transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 {paying ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
