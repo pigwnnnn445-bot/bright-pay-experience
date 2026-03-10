@@ -3,6 +3,8 @@ import type { ProductType } from "@/types/payment";
 import { cn } from "@/lib/utils";
 import tabCurveLeft from "@/assets/tab-curve-left.webp";
 import tabCurveRight from "@/assets/tab-curve-right.webp";
+import tabCurveLeftDark from "@/assets/tab-curve-left-dark.webp";
+import tabCurveRightDark from "@/assets/tab-curve-right-dark.webp";
 
 interface ProductTabsProps {
   activeTab: ProductType;
