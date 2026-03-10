@@ -41,7 +41,10 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
           {product.currency}{product.originalPrice.toFixed(2)}
         </p>
         {discount > 0 && (
-          <span className="mt-1.5 inline-block rounded-full bg-theme-green/10 px-3 py-0.5 text-xs font-medium text-theme-green">
+          <span
+            className="mt-1.5 inline-block rounded-full px-3 py-0.5 text-xs font-medium"
+            style={{ color: "#EF534F", backgroundImage: "linear-gradient(90deg, #FCD2D0 0%, #FCD7EB 100%)" }}
+          >
             已减 {product.currency}{discount.toFixed(2)}
           </span>
         )}
