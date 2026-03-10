@@ -61,7 +61,7 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
           <button
             type="button"
             onClick={handlePay}
-            className="w-[102px] h-[32px] rounded-lg bg-primary text-xs font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer"
+            className="mt-4 w-[102px] h-[32px] rounded-lg bg-primary text-xs font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer"
           >
             同意并支付
           </button>
