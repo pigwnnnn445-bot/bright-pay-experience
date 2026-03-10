@@ -30,7 +30,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       {product.badgeText && (
         <span
           className={cn(
-            "absolute -top-px -left-px rounded-tl-[10px] rounded-br-[10px] px-2.5 py-1 text-[10px] font-semibold text-primary-foreground",
+            "absolute -top-3 left-2 rounded-lg rounded-bl-none px-2 py-1 text-xs font-medium text-primary-foreground",
             product.badgeType === "recommend"
               ? "bg-gradient-to-r from-theme-purple to-theme-green"
               : product.badgeType === "value"
