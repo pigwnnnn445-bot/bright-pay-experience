@@ -158,7 +158,7 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
       </div>
 
       {/* QR code area */}
-      <div className="relative mt-7 flex h-[164px] w-[164px] items-center justify-center rounded-lg border border-border bg-card-alt overflow-hidden">
+      <div className="relative mt-7 flex h-[164px] w-[164px] items-center justify-center rounded-lg bg-card-alt overflow-hidden">
         {isPaid ? (
           /* Payment success */
           <div className="flex flex-col items-center justify-center gap-2">
