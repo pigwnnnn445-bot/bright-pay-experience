@@ -58,7 +58,9 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
     pollingRef.current = setInterval(async () => {
       try {
         const result = await getOrderStatus(orderId);
+        console.log("[PaymentSummary] poll result:", result.status, "orderId:", orderId);
         if (result.status === "paid") {
+          console.log("[PaymentSummary] Payment SUCCESS! Setting showSuccessModal=true");
           setPayStatus("paid");
           setPaidOrderId(orderId);
           setShowSuccessModal(true);
