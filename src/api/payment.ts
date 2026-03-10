@@ -132,12 +132,12 @@ const mockSkuPrices: SkuPrice[] = [
 ];
 
 const mockBenefitConfigs: BenefitConfig[] = [
-  { benefitId: "b1", productType: "membership", icon: "crown", title: "高级特权", description: "解锁全部高级功能，优先体验最新AI能力", isOnline: true, sort: 1 },
-  { benefitId: "b2", productType: "membership", icon: "infinity", title: "高额配额", description: "每日配额大幅提升，满足高频计算需求", isOnline: true, sort: 2 },
-  { benefitId: "b3", productType: "membership", icon: "shield", title: "隐私保护", description: "数据专属加密通道，全面保护您的隐私安全", isOnline: true, sort: 3 },
-  { benefitId: "b4", productType: "membership", icon: "hard-drive", title: "超大容量", description: "尊享扩容云端存储空间，保留更多历史记录", isOnline: true, sort: 4 },
-  { benefitId: "b5", productType: "membership", icon: "zap", title: "极速生成", description: "AI 模型优先调度，极速响应告别排队", isOnline: true, sort: 5 },
-  { benefitId: "b6", productType: "membership", icon: "star", title: "专属标识", description: "尊贵 Pro 会员专属身份标识与个性主页", isOnline: true, sort: 6 },
+  { benefitId: "b1", productType: "membership", icon: "crown", title: "顶级模型免费使用", description: "20+ 顶级模型不消耗配额，高频使用也毫无压力", isOnline: true, sort: 1 },
+  { benefitId: "b2", productType: "membership", icon: "monitor", title: "全场景通用", description: "可支持1200次对话 / 240张图片 / 34个视频 / 60个音频", isOnline: true, sort: 2 },
+  { benefitId: "b3", productType: "membership", icon: "message-circle", title: "全球知名对话模型", description: "Chat、双子星、克劳德等30+全球顶级模型，为您的指令提供经全球验证的专业支持。", isOnline: true, sort: 3 },
+  { benefitId: "b4", productType: "membership", icon: "image", title: "全球知名生图模型", description: "集成香蕉、MJ 等10+ 顶级生图模型，实现更出色的生成效果。", isOnline: true, sort: 4 },
+  { benefitId: "b5", productType: "membership", icon: "search", title: "深度研究功能", description: "面向学生、教授、专家、律师等专业人士的效率利器，快速整合海量信息，有深度，可信赖", isOnline: true, sort: 5 },
+  { benefitId: "b6", productType: "membership", icon: "star", title: "更多实用功能", description: "支持水印去除、卡通头像生成、专业翻译等多种能力，轻松兼顾工作与生活", isOnline: true, sort: 6 },
   { benefitId: "b7", productType: "addon", icon: "plus-circle", title: "即买即用", description: "配额实时到账，无需等待", isOnline: true, sort: 1 },
   { benefitId: "b8", productType: "addon", icon: "clock", title: "永不过期", description: "加量包配额不限使用期限", isOnline: true, sort: 2 },
 ];

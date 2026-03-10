@@ -1,4 +1,4 @@
-import { Zap, Infinity, Shield, Star, PlusCircle, Clock, Crown, HardDrive, type LucideIcon } from "lucide-react";
+import { Zap, Infinity, Shield, Star, PlusCircle, Clock, Crown, HardDrive, Monitor, MessageCircle, Image, Search, type LucideIcon } from "lucide-react";
 import type { BenefitConfig } from "@/types/payment";
 
 const iconMap: Record<string, LucideIcon> = {
@@ -10,6 +10,10 @@ const iconMap: Record<string, LucideIcon> = {
   clock: Clock,
   crown: Crown,
   "hard-drive": HardDrive,
+  monitor: Monitor,
+  "message-circle": MessageCircle,
+  image: Image,
+  search: Search,
 };
 
 interface BenefitItemProps {
@@ -21,8 +25,8 @@ const BenefitItem = ({ benefit }: BenefitItemProps) => {
 
   return (
     <div className="flex items-start gap-3 py-2.5">
-      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/8">
-        <Icon className="h-4.5 w-4.5 text-primary" />
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/8">
+        <Icon className="h-5 w-5 text-primary" />
       </div>
       <div className="min-w-0 flex-1">
         <p className="text-sm font-semibold text-title">{benefit.title}</p>
