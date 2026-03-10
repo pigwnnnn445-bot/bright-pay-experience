@@ -270,3 +270,27 @@ export async function getAgreementLinks(): Promise<AgreementLink[]> {
   await delay(200);
   return mockAgreementLinks;
 }
+
+// ========== Payment Success API (Mock) ==========
+
+export async function getPaymentSuccessResult(orderId: string): Promise<import("@/types/payment").PaymentSuccessResult> {
+  await delay(300);
+  const order = orderStore.get(orderId);
+  const sku = mockSkuPrices.find((s) => {
+    // Find matching sku from order
+    return mockProductConfigs.some((c) => c.skuCode === s.skuCode);
+  });
+  
+  // Find the product config that matches this order
+  const matchedSku = mockSkuPrices.find((s) => {
+    const config = mockProductConfigs.find((c) => c.skuCode === s.skuCode);
+    return config && s.salePrice > 0;
+  });
+
+  return {
+    amount: matchedSku?.salePrice || 0,
+    currency: matchedSku?.currency || "¥",
+    productName: "Pro会员30天",
+    expireTime: "2026/01/28 10:09:00",
+  };
+}

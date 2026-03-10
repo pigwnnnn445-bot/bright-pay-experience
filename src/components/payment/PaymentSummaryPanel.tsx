@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import type { DisplayProduct, PayMethod, PaymentOrder, AgreementLink } from "@/types/payment";
 import { QrCode, CheckCircle, Loader2 } from "lucide-react";
 import { createOrder, getOrderStatus, cancelOrder, getAgreementLinks } from "@/api/payment";
+import PaymentSuccessModal from "./PaymentSuccessModal";
 
 interface PaymentSummaryPanelProps {
   product: DisplayProduct | null;
@@ -13,6 +14,8 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
   const [order, setOrder] = useState<PaymentOrder | null>(null);
   const [paying, setPaying] = useState(false);
   const [payStatus, setPayStatus] = useState<"idle" | "paying" | "paid" | "failed">("idle");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [paidOrderId, setPaidOrderId] = useState<string>("");
   const [agreements, setAgreements] = useState<AgreementLink[]>([]);
   const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const currentOrderIdRef = useRef<string | null>(null);
@@ -57,6 +60,8 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
         const result = await getOrderStatus(orderId);
         if (result.status === "paid") {
           setPayStatus("paid");
+          setPaidOrderId(orderId);
+          setShowSuccessModal(true);
           if (pollingRef.current) {
             clearInterval(pollingRef.current);
             pollingRef.current = null;
@@ -258,6 +263,12 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
           </span>
         ))}
       </p>
+
+      <PaymentSuccessModal
+        open={showSuccessModal}
+        orderId={paidOrderId}
+        onClose={() => setShowSuccessModal(false)}
+      />
     </div>
   );
 };
