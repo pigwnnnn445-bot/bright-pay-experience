@@ -40,7 +40,6 @@ const ConfettiParticle = ({ delay, x, color, size }: { delay: number; x: number;
 const CONFETTI_COLORS = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FECA57", "#FF9FF3", "#54A0FF", "#5F27CD", "#01A3A4", "#F368E0"];
 
 const PaymentSuccessModal = ({ open, orderId, onClose }: PaymentSuccessModalProps) => {
-  console.log("[PaymentSuccessModal] render, open:", open, "orderId:", orderId);
   const [result, setResult] = useState<PaymentSuccessResult | null>(null);
   const [loading, setLoading] = useState(true);
 
