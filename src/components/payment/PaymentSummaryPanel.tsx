@@ -60,6 +60,8 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
         const result = await getOrderStatus(orderId);
         if (result.status === "paid") {
           setPayStatus("paid");
+          setPaidOrderId(orderId);
+          setShowSuccessModal(true);
           if (pollingRef.current) {
             clearInterval(pollingRef.current);
             pollingRef.current = null;
