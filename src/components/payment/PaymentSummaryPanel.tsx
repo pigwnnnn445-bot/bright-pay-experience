@@ -185,7 +185,7 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
             <div className="absolute bottom-1.5 right-1.5 h-4 w-4 border-b-2 border-r-2 border-primary rounded-br-sm" />
 
             {/* Semi-transparent overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-foreground/60 dark:bg-background/70 backdrop-blur-[2px]">
+            <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-foreground/60 dark:bg-background/70 backdrop-blur-[2px]">
               <p className="text-sm leading-relaxed text-background dark:text-foreground font-medium text-center">
                 开通前请阅读<br />下方协议说明
               </p>
