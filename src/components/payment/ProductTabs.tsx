@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import type { ProductType } from "@/types/payment";
 import { cn } from "@/lib/utils";
 import tabCurveLeft from "@/assets/tab-curve-left.webp";
@@ -27,7 +27,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
             type="button"
             onClick={() => onTabChange(tab.key)}
             className={cn(
-              "relative flex-1 py-3 text-base font-medium transition-colors duration-200 cursor-pointer",
+              "relative flex-1 py-3 text-base font-medium transition-colors duration-300 cursor-pointer",
               isActive
                 ? "text-title font-semibold"
                 : "text-text-muted hover:text-text-secondary"
@@ -35,7 +35,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
           >
             <span className="relative z-10">{tab.label}</span>
 
-            {/* Selected tab background */}
+            {/* Selected tab background with shared layoutId for smooth sliding */}
             {isActive && (
               <motion.div
                 layoutId="tab-bg"
@@ -44,27 +44,37 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
                   borderRadius: isLeft ? "16px 0 0 0" : "0 16px 0 0",
                   zIndex: 0,
                 }}
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                transition={{ type: "spring", stiffness: 350, damping: 30 }}
               />
             )}
 
-            {/* Right curve when left tab (membership) is selected */}
-            {isActive && isLeft && (
-              <img
-                src={tabCurveLeft}
-                alt=""
-                className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
-              />
-            )}
-
-            {/* Left curve when right tab (addon) is selected */}
-            {isActive && !isLeft && (
-              <img
-                src={tabCurveRight}
-                alt=""
-                className="absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none"
-              />
-            )}
+            {/* Curve connectors with fade transition */}
+            <AnimatePresence>
+              {isActive && isLeft && (
+                <motion.img
+                  key="curve-left"
+                  src={tabCurveLeft}
+                  alt=""
+                  className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                />
+              )}
+              {isActive && !isLeft && (
+                <motion.img
+                  key="curve-right"
+                  src={tabCurveRight}
+                  alt=""
+                  className="absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                />
+              )}
+            </AnimatePresence>
           </button>
         );
       })}
