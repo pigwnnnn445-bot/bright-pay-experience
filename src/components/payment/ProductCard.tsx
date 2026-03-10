@@ -19,7 +19,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       onClick={() => !disabled && onSelect(product)}
       className={cn(
         "relative flex flex-col items-center rounded-xl border-2 text-center transition-all duration-200 cursor-pointer",
-        isAddon ? "w-[302px] h-[190px] px-0 py-0" : "w-[164px] h-[182px] min-w-[164px] shrink-0 px-0 py-0",
+        isAddon ? "w-full aspect-[302/190] px-0 py-0" : "w-[164px] h-[182px] min-w-[164px] shrink-0 px-0 py-0",
         selected
           ? "border-primary scale-[1.02] shadow-card"
           : "border-border-card bg-background hover:border-primary/30",
@@ -33,7 +33,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
           className={cn(
             "absolute text-xs font-medium px-2 py-1 rounded-lg rounded-bl-none min-w-6 min-h-6",
             isAddon
-              ? "top-[4px] left-[4px]"
+              ? "top-1 left-1"
               : "-left-0.5 text-xs font-medium"
           )}
           style={isAddon
@@ -48,11 +48,11 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       {/* Title */}
       <p className={cn(
         "text-sm font-medium text-title line-clamp-1",
-        isAddon ? "absolute top-[28px]" : "mt-5"
+        isAddon ? "absolute top-[15%]" : "mt-5"
       )}>{product.title}</p>
 
       {/* Price */}
-      <div className={isAddon ? "absolute top-[64px]" : "mt-4"}>
+      <div className={isAddon ? "absolute top-[34%]" : "mt-4"}>
         <span className="inline-flex items-baseline text-primary" style={{ fontFamily: 'Gilroy, sans-serif', fontWeight: 700 }}>
           <span className="inline-block w-5 h-6 text-[20px] leading-6">{product.currency}</span>
           <span className="text-[32px] leading-[40px]">{product.salePrice.toFixed(2)}</span>
@@ -62,16 +62,16 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       {/* Original price */}
       <p className={cn(
         "text-xs text-text-muted line-through",
-        isAddon ? "absolute top-[112px]" : "mt-2"
+        isAddon ? "absolute top-[59%]" : "mt-2"
       )}>
         {product.currency}{product.originalPrice.toFixed(2)}
       </p>
 
       {/* Sub text */}
       <p className={cn(
-        "absolute rounded-[10px] text-xs font-medium flex items-center justify-center break-words overflow-hidden",
+        "absolute rounded-[10px] text-xs font-medium flex items-center justify-center break-words overflow-hidden px-2",
         isAddon
-          ? "left-[1px] top-[148px] w-[298px] h-[40px]"
+          ? "left-[1px] right-[1px] bottom-[1px] h-[40px]"
           : "left-[1px] top-[140px] w-[160px] h-[40px]",
         selected ? "text-payment-text-1 bg-payment-bg-1/10" : "text-title bg-[#F2F2F5]"
       )}>
