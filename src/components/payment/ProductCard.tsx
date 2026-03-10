@@ -52,7 +52,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       </p>
 
       {/* Sub text */}
-      <p className={cn("text-xs font-medium py-1 px-[10px] rounded-[10px] break-words overflow-hidden mx-1 mt-4 w-[calc(100%-8px)] bg-payment-bg-1/10", selected ? "text-payment-text-1" : "text-title")}>
+      <p className={cn("text-xs font-medium py-1 px-[10px] rounded-[10px] break-words overflow-hidden mt-4 w-[160px] h-[40px] flex items-center justify-center bg-payment-bg-1/10", selected ? "text-payment-text-1" : "text-title")}>
         {product.subTitle}
       </p>
     </button>
