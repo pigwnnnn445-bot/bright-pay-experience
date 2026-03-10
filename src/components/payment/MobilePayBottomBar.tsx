@@ -19,7 +19,7 @@ const MobilePayBottomBar = ({ product, paying, onPay }: MobilePayBottomBarProps)
   if (!product) return null;
 
   return (
-    <div className="shrink-0 border-t border-border bg-background px-4 pb-[env(safe-area-inset-bottom)] pt-3">
+    <div className="shrink-0 bg-background px-4 pb-[env(safe-area-inset-bottom)] pt-3">
       <button
         type="button"
         onClick={onPay}
