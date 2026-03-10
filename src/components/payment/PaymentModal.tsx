@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import { cn } from "@/lib/utils";
 import modalBg from "@/assets/modal-bg.webp";
 import modalBgDark from "@/assets/modal-bg-dark.webp";
 import { useTheme } from "next-themes";
@@ -176,12 +177,13 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                   {/* Wrapped content area */}
                   <div className="mt-5 max-lg:w-full">
                     {/* Tab switcher */}
-                    <div className="px-3">
-                      <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
-                    </div>
+                    <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
                     {/* Content below tabs */}
-                    <div className="rounded-b-2xl max-lg:rounded-none bg-background p-4">
+                    <div className={cn(
+                      "max-lg:rounded-none bg-background p-4",
+                      activeTab === "membership" ? "rounded-tr-2xl rounded-b-2xl" : "rounded-tl-2xl rounded-b-2xl"
+                    )}>
                       {/* Product cards */}
                       <div className="mt-1">
                         <ProductCardList
