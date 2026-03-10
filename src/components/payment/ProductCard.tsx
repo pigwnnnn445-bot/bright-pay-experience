@@ -37,10 +37,10 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       )}
 
       {/* Title */}
-      <p className="mt-3 text-sm font-medium text-title line-clamp-1">{product.title}</p>
+      <p className="mt-5 text-sm font-medium text-title line-clamp-1">{product.title}</p>
 
       {/* Price */}
-      <div className="mt-2">
+      <div className="mt-4">
         <span className="text-[40px] leading-tight font-bold text-primary">
           {product.currency}{product.salePrice.toFixed(2)}
         </span>
