@@ -19,7 +19,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       onClick={() => !disabled && onSelect(product)}
       className={cn(
         "relative flex flex-col items-center rounded-xl border-2 text-center transition-all duration-200 cursor-pointer",
-        isAddon ? "w-full px-4 py-4" : "w-[164px] h-[182px] min-w-[164px] shrink-0 px-0 py-0",
+        isAddon ? "w-[302px] h-[190px] px-0 py-0" : "w-[164px] h-[182px] min-w-[164px] shrink-0 px-0 py-0",
         selected
           ? "border-primary scale-[1.02] shadow-card"
           : "border-border-card bg-background hover:border-primary/30",
@@ -27,21 +27,29 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       )}
       style={selected ? { background: "linear-gradient(180deg, rgba(82, 82, 229, 0.08) 0%, rgba(82, 82, 229, 0) 50%)" } : undefined}
     >
-      {/* Badge - top left */}
+      {/* Badge */}
       {product.badgeText && (
         <span
-          className="absolute -left-0.5 text-xs font-medium px-2 py-1 rounded-lg rounded-bl-none min-w-6 min-h-6"
-          style={{ top: "-12px", color: "#EF534F", backgroundImage: "linear-gradient(90deg, #FDE3E3 0%, #FDE6F3 100%)" }}
+          className={cn(
+            "absolute text-xs font-medium px-2 py-1 rounded-lg rounded-bl-none min-w-6 min-h-6",
+            isAddon
+              ? "top-[4px] left-[4px] text-payment-text-5 bg-[image:var(--payment-gradient-bg-1)]"
+              : "-left-0.5 text-xs font-medium"
+          )}
+          style={!isAddon ? { top: "-12px", color: "#EF534F", backgroundImage: "linear-gradient(90deg, #FDE3E3 0%, #FDE6F3 100%)" } : undefined}
         >
           {product.badgeText}
         </span>
       )}
 
       {/* Title */}
-      <p className="mt-5 text-sm font-medium text-title line-clamp-1">{product.title}</p>
+      <p className={cn(
+        "text-sm font-medium text-title line-clamp-1",
+        isAddon ? "absolute top-[28px]" : "mt-5"
+      )}>{product.title}</p>
 
       {/* Price */}
-      <div className="mt-4">
+      <div className={isAddon ? "absolute top-[64px]" : "mt-4"}>
         <span className="inline-flex items-baseline text-primary" style={{ fontFamily: 'Gilroy, sans-serif', fontWeight: 700 }}>
           <span className="inline-block w-5 h-6 text-[20px] leading-6">{product.currency}</span>
           <span className="text-[32px] leading-[40px]">{product.salePrice.toFixed(2)}</span>
@@ -49,14 +57,19 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       </div>
 
       {/* Original price */}
-      <p className="mt-2 text-xs text-text-muted line-through">
+      <p className={cn(
+        "text-xs text-text-muted line-through",
+        isAddon ? "absolute top-[112px]" : "mt-2"
+      )}>
         {product.currency}{product.originalPrice.toFixed(2)}
       </p>
 
-      {/* Sub text */}
-      <p className={cn("absolute left-[2px] top-[140px] w-[160px] h-[40px] rounded-[10px] text-xs font-medium flex items-center justify-center break-words overflow-hidden", selected ? "text-payment-text-1 bg-payment-bg-1/10" : "text-title bg-[#F2F2F5]")}>
-        {product.subTitle}
-      </p>
+      {/* Sub text - membership only */}
+      {!isAddon && (
+        <p className={cn("absolute left-[2px] top-[140px] w-[160px] h-[40px] rounded-[10px] text-xs font-medium flex items-center justify-center break-words overflow-hidden", selected ? "text-payment-text-1 bg-payment-bg-1/10" : "text-title bg-[#F2F2F5]")}>
+          {product.subTitle}
+        </p>
+      )}
     </button>
   );
 };
