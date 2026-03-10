@@ -38,7 +38,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
               "relative flex-1 text-base font-medium transition-colors duration-300 cursor-pointer",
               isLeft ? "rounded-tl-2xl" : "rounded-tr-2xl",
               isActive
-                ? "py-3 text-title font-semibold"
+                ? "h-[52px] flex items-center justify-center text-title font-semibold"
                 : "h-[44px] flex items-center justify-center self-end text-text-muted hover:text-text-secondary bg-white/60 backdrop-blur-[10px] dark:bg-transparent dark:backdrop-blur-none"
             )}
           >
