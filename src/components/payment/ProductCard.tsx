@@ -108,7 +108,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       {/* Sub text */}
       <p className={cn(
         "absolute left-[1px] top-[140px] w-[160px] h-[40px] rounded-[10px] text-xs font-medium flex items-center justify-center break-words overflow-hidden px-2",
-        selected ? "text-theme-green bg-theme-green/10" : "text-title bg-secondary"
+        selected ? "text-primary-foreground bg-primary dark:text-theme-green dark:bg-theme-green/10" : "text-title bg-secondary"
       )}>
         {product.subTitle}
       </p>
