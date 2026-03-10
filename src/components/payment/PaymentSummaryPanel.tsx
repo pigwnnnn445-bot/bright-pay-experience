@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import type { DisplayProduct, PayMethod, PaymentOrder } from "@/types/payment";
+import type { DisplayProduct, PayMethod, PaymentOrder, AgreementLink } from "@/types/payment";
 import { QrCode, CheckCircle, Loader2 } from "lucide-react";
-import { createOrder, getOrderStatus, cancelOrder } from "@/api/payment";
+import { createOrder, getOrderStatus, cancelOrder, getAgreementLinks } from "@/api/payment";
 
 interface PaymentSummaryPanelProps {
   product: DisplayProduct | null;
