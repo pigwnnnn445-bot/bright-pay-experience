@@ -29,14 +29,8 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       {/* Badge - top left */}
       {product.badgeText && (
         <span
-          className={cn(
-            "absolute -top-3 left-2 rounded-lg rounded-bl-none px-2 py-1 text-xs font-medium text-primary-foreground",
-            product.badgeType === "recommend"
-              ? "bg-gradient-to-r from-theme-purple to-theme-green"
-              : product.badgeType === "value"
-                ? "bg-destructive"
-                : "bg-theme-green"
-          )}
+          className="absolute -left-0.5 text-xs font-medium px-2 py-1 rounded-lg rounded-bl-none text-payment-text-5 min-w-6 min-h-6"
+          style={{ top: "-12px", backgroundImage: "var(--payment-gradient-bg-1)" }}
         >
           {product.badgeText}
         </span>
