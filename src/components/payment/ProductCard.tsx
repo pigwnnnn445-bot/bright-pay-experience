@@ -72,7 +72,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
         "absolute rounded-[10px] text-xs font-medium flex items-center justify-center break-words overflow-hidden",
         isAddon
           ? "left-[2px] top-[148px] w-[298px] h-[40px]"
-          : "left-[2px] top-[140px] w-[160px] h-[40px]",
+          : "left-[1px] top-[140px] w-[160px] h-[40px]",
         selected ? "text-payment-text-1 bg-payment-bg-1/10" : "text-title bg-[#F2F2F5]"
       )}>
         {product.subTitle}
