@@ -29,8 +29,8 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       {/* Badge - top left */}
       {product.badgeText && (
         <span
-          className="absolute -left-0.5 text-xs font-medium px-2 py-1 rounded-lg rounded-bl-none text-payment-text-5 min-w-6 min-h-6"
-          style={{ top: "-12px", backgroundImage: "var(--payment-gradient-bg-1)" }}
+          className="absolute -left-0.5 text-xs font-medium px-2 py-1 rounded-lg rounded-bl-none min-w-6 min-h-6"
+          style={{ top: "-12px", color: "#EF534F", backgroundImage: "linear-gradient(90deg, #FDE3E3 0%, #FDE6F3 100%)" }}
         >
           {product.badgeText}
         </span>
