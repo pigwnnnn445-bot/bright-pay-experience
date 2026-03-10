@@ -48,6 +48,7 @@
     --payment-bg-1: 240 73% 61%;
     --payment-text-1: 240 73% 61%;
     --payment-text-5: 0 0% 100%;
+    --tab-inactive-bg: transparent;
     --payment-gradient-bg-1: linear-gradient(135deg, hsl(240 73.9% 61%), hsl(157 62% 64%));
 
     --gradient-primary: linear-gradient(135deg, hsl(240 73.9% 61%), hsl(170 60% 55%));
@@ -106,6 +107,7 @@
     --payment-bg-1: 240 73% 61%;
     --payment-text-1: 240 73% 70%;
     --payment-text-5: 0 0% 100%;
+    --tab-inactive-bg: 240 5% 14%;
     --payment-gradient-bg-1: linear-gradient(135deg, hsl(240 73.9% 61%), hsl(157 62% 54%));
 
     --gradient-primary: linear-gradient(135deg, hsl(240 73.9% 61%), hsl(170 60% 50%));
