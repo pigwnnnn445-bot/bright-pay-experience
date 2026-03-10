@@ -262,11 +262,6 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
         ))}
       </p>
 
-      <PaymentSuccessModal
-        open={showSuccessModal}
-        orderId={paidOrderId}
-        onClose={() => setShowSuccessModal(false)}
-      />
     </div>
   );
 };
