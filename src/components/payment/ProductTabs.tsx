@@ -18,6 +18,11 @@ const tabs: { key: ProductType; label: string }[] = [
 ];
 
 const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const curveLeft = isDark ? tabCurveLeftDark : tabCurveLeft;
+  const curveRight = isDark ? tabCurveRightDark : tabCurveRight;
+
   return (
     <div className="relative flex w-full">
       {tabs.map((tab) => {
