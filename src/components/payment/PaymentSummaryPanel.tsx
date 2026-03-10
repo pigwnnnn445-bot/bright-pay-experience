@@ -10,6 +10,8 @@ interface PaymentSummaryPanelProps {
 }
 
 const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSummaryPanelProps) => {
+  const onPaymentSuccessRef = useRef(onPaymentSuccess);
+  onPaymentSuccessRef.current = onPaymentSuccess;
   const [payMethod, setPayMethod] = useState<PayMethod>("wechat");
   const [order, setOrder] = useState<PaymentOrder | null>(null);
   const [paying, setPaying] = useState(false);
@@ -58,7 +60,7 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
         const result = await getOrderStatus(orderId);
         if (result.status === "paid") {
           setPayStatus("paid");
-          onPaymentSuccess?.(orderId);
+          onPaymentSuccessRef.current?.(orderId);
           if (pollingRef.current) {
             clearInterval(pollingRef.current);
             pollingRef.current = null;
