@@ -25,6 +25,7 @@ import PaymentSummaryPanel from "./PaymentSummaryPanel";
 import MobilePayMethodSelector from "./MobilePayMethodSelector";
 import MobilePayBottomBar from "./MobilePayBottomBar";
 import PaymentSuccessModal from "./PaymentSuccessModal";
+import PaymentFailModal from "./PaymentFailModal";
 
 interface PaymentModalProps {
   open: boolean;
