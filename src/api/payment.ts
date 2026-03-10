@@ -8,6 +8,7 @@ import type {
   PaymentOrder,
   OrderStatusResult,
   OrderStatus,
+  AgreementLink,
 } from "@/types/payment";
 
 // ========== Mock Data ==========
