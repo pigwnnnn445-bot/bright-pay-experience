@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import type { ProductType } from "@/types/payment";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 import tabCurveLeft from "@/assets/tab-curve-left.webp";
 import tabCurveRight from "@/assets/tab-curve-right.webp";
 import tabCurveLeftDark from "@/assets/tab-curve-left-dark.webp";
