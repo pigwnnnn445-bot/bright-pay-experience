@@ -95,11 +95,26 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
         userId: user.id,
         payMethod: mobilePayMethod,
       });
-      console.log("移动端支付订单已创建:", order);
-      // In real app, this would redirect to payment app or show result
-      alert(`订单已创建\n订单号: ${order.orderId}\n支付方式: ${mobilePayMethod === "wechat" ? "微信" : "支付宝"}\n金额: ${selectedProduct.currency}${selectedProduct.salePrice}`);
+      // Poll for payment status
+      const pollInterval = setInterval(async () => {
+        try {
+          const result = await getOrderStatus(order.orderId);
+          if (result.status === "paid") {
+            clearInterval(pollInterval);
+            setMobilePaying(false);
+            setPaidOrderId(order.orderId);
+            setShowSuccessModal(true);
+          } else if (result.status === "failed" || result.status === "cancelled" || result.status === "expired") {
+            clearInterval(pollInterval);
+            setMobilePaying(false);
+            alert("支付失败，请重试");
+          }
+        } catch {}
+      }, 2000);
     } catch {
       alert("支付失败，请重试");
+      setMobilePaying(false);
+    }
     } finally {
       setMobilePaying(false);
     }
