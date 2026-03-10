@@ -166,7 +166,7 @@ const PaymentSuccessModal = ({ open, orderId, onClose }: PaymentSuccessModalProp
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              I Know
+              我知道了
             </motion.button>
           </motion.div>
         </motion.div>

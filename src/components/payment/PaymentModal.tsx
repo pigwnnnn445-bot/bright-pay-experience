@@ -234,7 +234,10 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
       <PaymentSuccessModal
         open={showSuccessModal}
         orderId={paidOrderId}
-        onClose={() => setShowSuccessModal(false)}
+        onClose={() => {
+          setShowSuccessModal(false);
+          onClose();
+        }}
       />
     </>
   );
