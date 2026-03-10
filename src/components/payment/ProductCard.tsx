@@ -19,7 +19,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       onClick={() => !disabled && onSelect(product)}
       className={cn(
         "relative flex flex-col items-center rounded-xl border-2 text-center transition-all duration-200 cursor-pointer",
-        isAddon ? "w-[302px] h-[190px] px-0 py-0" : "w-[164px] h-[182px] min-w-[164px] shrink-0 px-0 py-0",
+        isAddon ? "w-full aspect-[302/190] px-0 py-0" : "w-[164px] h-[182px] min-w-[164px] shrink-0 px-0 py-0",
         selected
           ? "border-primary scale-[1.02] shadow-card"
           : "border-border-card bg-background hover:border-primary/30",
