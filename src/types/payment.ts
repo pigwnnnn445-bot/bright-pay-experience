@@ -102,3 +102,10 @@ export interface AgreementLink {
   label: string;
   url: string;
 }
+
+export interface PaymentSuccessResult {
+  amount: number;
+  currency: string;
+  productName: string;
+  expireTime: string;
+}
