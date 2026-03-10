@@ -210,6 +210,10 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                 <PaymentSummaryPanel
                   product={selectedProduct}
                   userId={user?.id || ""}
+                  onPaymentSuccess={(orderId) => {
+                    setPaidOrderId(orderId);
+                    setShowSuccessModal(true);
+                  }}
                 />
               </div>
             )}

@@ -2,20 +2,18 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import type { DisplayProduct, PayMethod, PaymentOrder, AgreementLink } from "@/types/payment";
 import { QrCode, CheckCircle, Loader2 } from "lucide-react";
 import { createOrder, getOrderStatus, cancelOrder, getAgreementLinks } from "@/api/payment";
-import PaymentSuccessModal from "./PaymentSuccessModal";
 
 interface PaymentSummaryPanelProps {
   product: DisplayProduct | null;
   userId: string;
+  onPaymentSuccess?: (orderId: string) => void;
 }
 
-const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
+const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSummaryPanelProps) => {
   const [payMethod, setPayMethod] = useState<PayMethod>("wechat");
   const [order, setOrder] = useState<PaymentOrder | null>(null);
   const [paying, setPaying] = useState(false);
   const [payStatus, setPayStatus] = useState<"idle" | "paying" | "paid" | "failed">("idle");
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const [paidOrderId, setPaidOrderId] = useState<string>("");
   const [agreements, setAgreements] = useState<AgreementLink[]>([]);
   const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const currentOrderIdRef = useRef<string | null>(null);
@@ -58,12 +56,9 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
     pollingRef.current = setInterval(async () => {
       try {
         const result = await getOrderStatus(orderId);
-        console.log("[PaymentSummary] poll result:", result.status, "orderId:", orderId);
         if (result.status === "paid") {
-          console.log("[PaymentSummary] Payment SUCCESS! Setting showSuccessModal=true");
           setPayStatus("paid");
-          setPaidOrderId(orderId);
-          setShowSuccessModal(true);
+          onPaymentSuccess?.(orderId);
           if (pollingRef.current) {
             clearInterval(pollingRef.current);
             pollingRef.current = null;
@@ -266,11 +261,6 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
         ))}
       </p>
 
-      <PaymentSuccessModal
-        open={showSuccessModal}
-        orderId={paidOrderId}
-        onClose={() => setShowSuccessModal(false)}
-      />
     </div>
   );
 };
