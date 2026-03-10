@@ -2,19 +2,25 @@ import { useEffect, useState, useCallback } from "react";
 import modalBg from "@/assets/modal-bg.webp";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import type { UserProfile, ProductType, DisplayProduct, BenefitConfig } from "@/types/payment";
+import type { UserProfile, ProductType, DisplayProduct, BenefitConfig, PayMethod } from "@/types/payment";
 import {
   getUserProfile,
   getProductConfigs,
   getSkuPrices,
   getBenefitConfigs,
   buildDisplayProducts,
+  createOrder,
+  cancelOrder,
+  getOrderStatus,
 } from "@/api/payment";
+import { useIsMobile } from "@/hooks/use-mobile";
 import UserProfileHeader from "./UserProfileHeader";
 import ProductTabs from "./ProductTabs";
 import ProductCardList from "./ProductCardList";
 import BenefitSection from "./BenefitSection";
 import PaymentSummaryPanel from "./PaymentSummaryPanel";
+import MobilePayMethodSelector from "./MobilePayMethodSelector";
+import MobilePayBottomBar from "./MobilePayBottomBar";
 
 interface PaymentModalProps {
   open: boolean;
@@ -22,6 +28,7 @@ interface PaymentModalProps {
 }
 
 const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
+  const isMobile = useIsMobile();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<UserProfile | null>(null);
   const [allProducts, setAllProducts] = useState<DisplayProduct[]>([]);
@@ -29,6 +36,10 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
   const [activeTab, setActiveTab] = useState<ProductType>("membership");
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Mobile payment state
+  const [mobilePayMethod, setMobilePayMethod] = useState<PayMethod>("wechat");
+  const [mobilePaying, setMobilePaying] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -70,6 +81,26 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
     setSelectedId(product.configId);
   }, []);
 
+  const handleMobilePay = useCallback(async () => {
+    if (!selectedProduct || !user) return;
+    setMobilePaying(true);
+    try {
+      const order = await createOrder({
+        skuId: selectedProduct.skuId,
+        skuCode: selectedProduct.skuCode,
+        productType: selectedProduct.productType,
+        userId: user.id,
+        payMethod: mobilePayMethod,
+      });
+      console.log("移动端支付订单已创建:", order);
+      // In real app, this would redirect to payment app or show result
+      alert(`订单已创建\n订单号: ${order.orderId}\n支付方式: ${mobilePayMethod === "wechat" ? "微信" : "支付宝"}\n金额: ${selectedProduct.currency}${selectedProduct.salePrice}`);
+    } catch {
+      alert("支付失败，请重试");
+    } finally {
+      setMobilePaying(false);
+    }
+  }, [selectedProduct, user, mobilePayMethod]);
 
   useEffect(() => {
     if (!open) return;
@@ -112,8 +143,8 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
               <X className="h-4 w-4" />
             </button>
 
-            {/* Left: main content */}
-            <div className="flex-1 overflow-y-auto p-6">
+            {/* Main content */}
+            <div className="flex-1 overflow-y-auto p-6 max-lg:pb-0">
               {error ? (
                 <div className="flex h-48 items-center justify-center">
                   <p className="text-sm text-destructive">{error}</p>
@@ -138,6 +169,14 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                       />
                     </div>
 
+                    {/* Mobile: payment method selector */}
+                    {isMobile && (
+                      <MobilePayMethodSelector
+                        payMethod={mobilePayMethod}
+                        onSwitch={setMobilePayMethod}
+                      />
+                    )}
+
                     {/* Benefits - only for membership */}
                     {activeTab === "membership" && (
                       <BenefitSection benefits={filteredBenefits} loading={loading} />
@@ -147,13 +186,24 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
               )}
             </div>
 
-            {/* Right: payment panel */}
-            <div className="w-full shrink-0 border-t border-border p-5 lg:pt-[118px] lg:w-[220px] lg:border-t-0">
-              <PaymentSummaryPanel
+            {/* Desktop: right payment panel */}
+            {!isMobile && (
+              <div className="w-full shrink-0 border-t border-border p-5 lg:pt-[118px] lg:w-[220px] lg:border-t-0">
+                <PaymentSummaryPanel
+                  product={selectedProduct}
+                  userId={user?.id || ""}
+                />
+              </div>
+            )}
+
+            {/* Mobile: bottom pay bar */}
+            {isMobile && (
+              <MobilePayBottomBar
                 product={selectedProduct}
-                userId={user?.id || ""}
+                paying={mobilePaying}
+                onPay={handleMobilePay}
               />
-            </div>
+            )}
           </motion.div>
         </motion.div>
       )}
