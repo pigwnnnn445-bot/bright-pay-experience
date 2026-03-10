@@ -41,7 +41,10 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
           {product.currency}{product.originalPrice.toFixed(2)}
         </p>
         {discount > 0 && (
-          <span className="mt-1.5 inline-block rounded-full bg-theme-green/10 px-3 py-0.5 text-xs font-medium text-theme-green">
+          <span
+            className="mt-1.5 inline-block rounded-full px-3 py-0.5 text-xs font-medium"
+            style={{ color: "#EF534F", backgroundImage: "linear-gradient(90deg, #FCD2D0 0%, #FCD7EB 100%)" }}
+          >
             已减 {product.currency}{discount.toFixed(2)}
           </span>
         )}
@@ -61,16 +64,10 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
         </button>
       </div>
 
-      {/* WeChat section */}
-      <div className="mt-5 text-center">
-        <p className="text-sm text-text-secondary">微信扫码支付</p>
-        <div className="mt-3 flex items-center justify-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-theme-green/10">
-            <QrCode className="h-5 w-5 text-theme-green" />
-          </div>
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-            <QrCode className="h-5 w-5 text-primary" />
-          </div>
+      {/* QR code placeholder */}
+      <div className="mt-5 flex items-center justify-center">
+        <div className="flex h-[164px] w-[164px] items-center justify-center rounded-lg border border-border bg-card-alt">
+          <QrCode className="h-10 w-10 text-text-muted" />
         </div>
       </div>
 
