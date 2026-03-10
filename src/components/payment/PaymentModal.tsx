@@ -127,7 +127,8 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
   }, [open, onClose]);
 
   return (
-    <AnimatePresence>
+    <>
+      <AnimatePresence>
       {open && (
         <motion.div
           className="fixed inset-0 z-50 flex items-center justify-center"
