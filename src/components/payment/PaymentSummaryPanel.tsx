@@ -173,18 +173,27 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
             className="h-full w-full object-contain p-2"
           />
         ) : (
-          /* Default state with overlay */
+          /* Default state: QR code with overlay */
           <>
-            <QrCode className="h-10 w-10 text-text-muted" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-background/80 backdrop-blur-sm">
-              <p className="text-xs leading-relaxed text-text-secondary text-center">
+            {/* QR code background */}
+            <QrCode className="h-[120px] w-[120px] text-text-muted/40" strokeWidth={1} />
+
+            {/* Corner brackets decoration */}
+            <div className="absolute top-1.5 left-1.5 h-4 w-4 border-t-2 border-l-2 border-primary rounded-tl-sm" />
+            <div className="absolute top-1.5 right-1.5 h-4 w-4 border-t-2 border-r-2 border-primary rounded-tr-sm" />
+            <div className="absolute bottom-1.5 left-1.5 h-4 w-4 border-b-2 border-l-2 border-primary rounded-bl-sm" />
+            <div className="absolute bottom-1.5 right-1.5 h-4 w-4 border-b-2 border-r-2 border-primary rounded-br-sm" />
+
+            {/* Semi-transparent overlay */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-foreground/60 dark:bg-background/70 backdrop-blur-[2px]">
+              <p className="text-sm leading-relaxed text-background dark:text-foreground font-medium text-center">
                 开通前请阅读<br />下方协议说明
               </p>
               <button
                 type="button"
                 onClick={handlePay}
                 disabled={paying}
-                className="mt-4 w-[102px] h-[32px] rounded-lg bg-primary text-xs font-semibold text-primary-foreground dark:text-black transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center"
+                className="mt-4 w-[120px] h-[36px] rounded-lg bg-primary text-sm font-semibold text-primary-foreground dark:text-black transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 {paying ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
