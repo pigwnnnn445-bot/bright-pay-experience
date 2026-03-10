@@ -82,7 +82,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       {/* Badge */}
       {product.badgeText && (
         <span
-          className="-left-0.5 absolute text-xs font-medium px-2 py-1 rounded-lg rounded-bl-none min-w-6 min-h-6"
+          className="-left-0.5 absolute text-xs font-medium px-2 rounded-lg rounded-bl-none min-w-6 h-6 flex items-center"
           style={{ top: "-12px", color: "#EF534F", backgroundImage: "linear-gradient(90deg, #FDE3E3 0%, #FDE6F3 100%)" }}
         >
           {product.badgeText}
