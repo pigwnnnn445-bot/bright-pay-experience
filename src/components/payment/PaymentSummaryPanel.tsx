@@ -60,7 +60,7 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
         const result = await getOrderStatus(orderId);
         if (result.status === "paid") {
           setPayStatus("paid");
-          onPaymentSuccess?.(orderId);
+          onPaymentSuccessRef.current?.(orderId);
           if (pollingRef.current) {
             clearInterval(pollingRef.current);
             pollingRef.current = null;
