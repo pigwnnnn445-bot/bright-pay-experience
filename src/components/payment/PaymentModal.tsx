@@ -249,6 +249,10 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
           onClose();
         }}
       />
+      <PaymentFailModal
+        open={showFailModal}
+        onClose={() => setShowFailModal(false)}
+      />
     </>
   );
 };
