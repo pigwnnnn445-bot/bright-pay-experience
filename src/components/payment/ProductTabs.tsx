@@ -16,7 +16,7 @@ const tabs: { key: ProductType; label: string }[] = [
 
 const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
   return (
-    <div className="relative flex w-full items-end">
+    <div className="relative flex w-full">
       {tabs.map((tab) => {
         const isActive = activeTab === tab.key;
         const isLeft = tab.key === "membership";
@@ -27,12 +27,10 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
             type="button"
             onClick={() => onTabChange(tab.key)}
             className={cn(
-              "relative flex-1 flex items-center justify-center text-base font-medium transition-colors duration-200 cursor-pointer",
+              "relative flex-1 py-3 text-base font-medium transition-colors duration-200 cursor-pointer",
               isActive
-                ? "h-[52px] text-title font-semibold"
-                : "h-[44px] text-text-muted hover:text-text-secondary backdrop-blur-[10px] dark:bg-[hsl(var(--tab-inactive-bg))]",
-              !isActive && isLeft && "rounded-tl-2xl",
-              !isActive && !isLeft && "rounded-tr-2xl"
+                ? "text-title font-semibold"
+                : "text-text-muted hover:text-text-secondary"
             )}
           >
             <span className="relative z-10">{tab.label}</span>
