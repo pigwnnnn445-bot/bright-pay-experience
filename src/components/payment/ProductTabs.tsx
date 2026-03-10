@@ -57,33 +57,25 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
               />
             )}
 
-            {/* Curve connectors with fade transition */}
-            <AnimatePresence>
-              {isActive && isLeft && (
-                <motion.img
-                  key="curve-left"
-                  src={curveLeft}
-                  alt=""
-                  className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                />
-              )}
-              {isActive && !isLeft && (
-                <motion.img
-                  key="curve-right"
-                  src={curveRight}
-                  alt=""
-                  className="absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                />
-              )}
-            </AnimatePresence>
+            {/* Curve connectors — always rendered, opacity animated */}
+            {isLeft && (
+              <motion.img
+                src={curveLeft}
+                alt=""
+                className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
+                animate={{ opacity: isActive ? 1 : 0 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+              />
+            )}
+            {!isLeft && (
+              <motion.img
+                src={curveRight}
+                alt=""
+                className="absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none"
+                animate={{ opacity: isActive ? 1 : 0 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+              />
+            )}
           </button>
         );
       })}
