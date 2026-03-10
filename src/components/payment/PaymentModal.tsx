@@ -114,7 +114,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
           } else if (result.status === "failed" || result.status === "cancelled" || result.status === "expired") {
             clearInterval(pollInterval);
             setMobilePaying(false);
-            alert("支付失败，请重试");
+            setShowFailModal(true);
           }
         } catch {}
       }, 2000);
