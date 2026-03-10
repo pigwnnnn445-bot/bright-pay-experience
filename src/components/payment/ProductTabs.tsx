@@ -24,7 +24,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
   const curveRight = isDark ? tabCurveRightDark : tabCurveRight;
 
   return (
-    <div className="relative flex w-full">
+    <div className="relative flex w-full items-end">
       {tabs.map((tab) => {
         const isActive = activeTab === tab.key;
         const isLeft = tab.key === "membership";
