@@ -51,7 +51,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
             {/* Right curve when left tab (membership) is selected */}
             {isActive && isLeft && (
               <img
-                src={tabCurveRight}
+                src={tabCurveLeft}
                 alt=""
                 className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
               />
