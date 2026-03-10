@@ -251,8 +251,12 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
       {/* Footer */}
       <p className="mt-auto pt-4 text-center text-[10px] leading-relaxed text-text-muted">
         支付表示您已阅读并同意{" "}
-        <span className="text-primary cursor-pointer hover:underline">服务条款</span>{" "}
-        <span className="text-primary cursor-pointer hover:underline">隐私政策</span>
+        {agreements.map((a, i) => (
+          <span key={a.key}>
+            <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-primary cursor-pointer hover:underline">{a.label}</a>
+            {i < agreements.length - 1 && " "}
+          </span>
+        ))}
       </p>
     </div>
   );
