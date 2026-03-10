@@ -180,10 +180,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                     <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
                     {/* Content below tabs */}
-                    <div className={cn(
-                      "max-lg:rounded-none bg-background p-4",
-                      activeTab === "membership" ? "rounded-tr-2xl rounded-b-2xl" : "rounded-tl-2xl rounded-b-2xl"
-                    )}>
+                    <div className="max-lg:rounded-none bg-background p-4 rounded-b-2xl">
                       {/* Product cards */}
                       <div className="mt-1">
                         <ProductCardList
