@@ -51,7 +51,7 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
       </div>
 
       {/* QR code area with overlay text and button */}
-      <div className="relative mt-5 flex h-[164px] w-[164px] items-center justify-center rounded-lg border border-border bg-card-alt">
+      <div className="relative mt-7 flex h-[164px] w-[164px] items-center justify-center rounded-lg border border-border bg-card-alt">
         <QrCode className="h-10 w-10 text-text-muted" />
         {/* Overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-background/80 backdrop-blur-sm">
