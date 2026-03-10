@@ -21,10 +21,11 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
         "relative flex flex-col items-center rounded-xl border-2 text-center transition-all duration-200 cursor-pointer",
         isAddon ? "w-full px-4 py-4" : "w-[164px] h-[182px] min-w-[164px] shrink-0 px-0 py-0",
         selected
-          ? "border-primary bg-background scale-[1.02] shadow-card"
+          ? "border-primary scale-[1.02] shadow-card"
           : "border-border-card bg-background hover:border-primary/30",
         disabled && "pointer-events-none opacity-40"
       )}
+      style={selected ? { background: "linear-gradient(180deg, rgba(82, 82, 229, 0.08) 0%, rgba(82, 82, 229, 0) 50%)" } : undefined}
     >
       {/* Badge - top left */}
       {product.badgeText && (
