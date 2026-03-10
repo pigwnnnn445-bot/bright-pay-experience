@@ -144,7 +144,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
             </button>
 
             {/* Main content */}
-            <div className="flex-1 overflow-y-auto p-6 max-lg:pb-0">
+            <div className="flex-1 overflow-y-auto p-6 max-lg:pb-4">
               {error ? (
                 <div className="flex h-48 items-center justify-center">
                   <p className="text-sm text-destructive">{error}</p>
@@ -169,19 +169,21 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                       />
                     </div>
 
-                    {/* Mobile: payment method selector */}
-                    {isMobile && (
-                      <MobilePayMethodSelector
-                        payMethod={mobilePayMethod}
-                        onSwitch={setMobilePayMethod}
-                      />
-                    )}
-
                     {/* Benefits - only for membership */}
                     {activeTab === "membership" && (
                       <BenefitSection benefits={filteredBenefits} loading={loading} />
                     )}
                   </div>
+
+                  {/* Mobile: payment method selector (outside card) */}
+                  {isMobile && (
+                    <div className="mt-4 rounded-2xl border border-border bg-background px-4">
+                      <MobilePayMethodSelector
+                        payMethod={mobilePayMethod}
+                        onSwitch={setMobilePayMethod}
+                      />
+                    </div>
+                  )}
                 </>
               )}
             </div>
