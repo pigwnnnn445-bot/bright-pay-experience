@@ -258,3 +258,15 @@ export async function cancelOrder(orderId: string): Promise<void> {
     order.status = "cancelled";
   }
 }
+
+// ========== Agreement Links API (Mock) ==========
+
+const mockAgreementLinks: AgreementLink[] = [
+  { key: "terms", label: "服务条款", url: "https://example.com/terms" },
+  { key: "privacy", label: "隐私政策", url: "https://example.com/privacy" },
+];
+
+export async function getAgreementLinks(): Promise<AgreementLink[]> {
+  await delay(200);
+  return mockAgreementLinks;
+}
