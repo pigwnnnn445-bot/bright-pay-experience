@@ -11,7 +11,7 @@
     --background: 0 0% 100%;
     --foreground: 0 0% 9%;
 
-    --card: 220 30% 96%;
+    --card: 0 0% 100%;
     --card-foreground: 0 0% 9%;
 
     --popover: 0 0% 100%;
@@ -29,8 +29,8 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 15% 92%;
-    --border-card: 240 15% 92%;
+    --border: 240 15% 88%;
+    --border-card: 240 15% 88%;
     --input: 240 15% 88%;
     --ring: 240 73.9% 61%;
 
@@ -65,65 +65,61 @@
   }
 
   .dark {
-    --primary: 240 73.9% 65%;
+    --primary: 240 73.9% 61%;
     --primary-foreground: 0 0% 100%;
 
-    --background: 222 20% 10%;
-    --foreground: 210 20% 90%;
+    --background: 240 6.7% 20.6%;
+    --foreground: 0 0% 100%;
 
-    --card: 222 18% 14%;
-    --card-foreground: 210 20% 90%;
+    --card: 240 5% 25%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 222 18% 14%;
-    --popover-foreground: 210 20% 90%;
+    --popover: 240 5% 25%;
+    --popover-foreground: 0 0% 100%;
 
-    --secondary: 222 14% 18%;
-    --secondary-foreground: 210 15% 80%;
+    --secondary: 240 5% 30%;
+    --secondary-foreground: 0 0% 90%;
 
-    --muted: 222 14% 18%;
-    --muted-foreground: 215 12% 55%;
+    --muted: 240 5% 30%;
+    --muted-foreground: 240 5% 55%;
 
-    --accent: 222 14% 20%;
-    --accent-foreground: 210 20% 90%;
+    --accent: 240 5% 30%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 222 14% 22%;
-    --border-card: 222 14% 22%;
-    --input: 222 14% 24%;
-    --ring: 240 73.9% 65%;
+    --border: 240 16% 94%;
+    --border-card: 240 5% 30%;
+    --input: 240 5% 30%;
+    --ring: 240 73.9% 61%;
 
-    /* Custom semantic tokens */
-    --title: 210 20% 92%;
-    --text-secondary: 215 12% 65%;
-    --text-muted: 215 12% 50%;
-    --hover-bg: 222 14% 20%;
-    --card-alt: 222 16% 16%;
-    --menu-selected: 222 18% 18%;
+    /* Custom semantic tokens - Dark Mode */
+    --title: 240 25% 92%;
+    --text-secondary: 240 8% 73%;
+    --text-muted: 240 5% 45%;
+    --hover-bg: 240 5% 18%;
+    --card-alt: 240 5% 30%;
+    --menu-selected: 240 5% 24%;
     --theme-green: 157 62% 54%;
-    --theme-purple: 240 73% 65%;
-    --payment-bg-1: 240 73% 65%;
+    --theme-purple: 240 73% 61%;
+    --payment-bg-1: 240 73% 61%;
     --payment-text-1: 240 73% 70%;
     --payment-text-5: 0 0% 100%;
-    --payment-gradient-bg-1: linear-gradient(135deg, hsl(240 73.9% 65%), hsl(157 62% 54%));
+    --payment-gradient-bg-1: linear-gradient(135deg, hsl(240 73.9% 61%), hsl(157 62% 54%));
 
-    --gradient-primary: linear-gradient(135deg, hsl(240 73.9% 65%), hsl(170 60% 50%));
+    --gradient-primary: linear-gradient(135deg, hsl(240 73.9% 61%), hsl(170 60% 50%));
     --shadow-card: 0 2px 12px -2px hsl(0 0% 0% / 0.4);
     --shadow-modal: 0 24px 80px -12px hsl(0 0% 0% / 0.5);
 
-    --sidebar-background: 222 18% 12%;
-    --sidebar-foreground: 210 15% 75%;
-    --sidebar-primary: 210 20% 90%;
-    --sidebar-primary-foreground: 222 18% 12%;
-    --sidebar-accent: 222 14% 18%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 222 14% 22%;
-    --sidebar-ring: 240 73.9% 65%;
-
-    /* Dark mode specific */
-    --product-card-sub-bg: 222 14% 18%;
-    --product-card-selected-bg: linear-gradient(180deg, rgba(100, 100, 240, 0.15) 0%, rgba(100, 100, 240, 0) 50%);
+    --sidebar-background: 240 5% 15%;
+    --sidebar-foreground: 240 8% 73%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 240 5% 15%;
+    --sidebar-accent: 240 5% 22%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 240 5% 28%;
+    --sidebar-ring: 240 73.9% 61%;
   }
 }
 
