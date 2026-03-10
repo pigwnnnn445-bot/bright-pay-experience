@@ -1,5 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import modalBg from "@/assets/modal-bg.webp";
+import modalBgDark from "@/assets/modal-bg-dark.webp";
+import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import type { UserProfile, ProductType, DisplayProduct, BenefitConfig, PayMethod } from "@/types/payment";
@@ -30,6 +32,8 @@ interface PaymentModalProps {
 
 const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
   const isMobile = useIsMobile();
+  const { theme } = useTheme();
+  const currentBg = theme === "dark" ? modalBgDark : modalBg;
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<UserProfile | null>(null);
   const [allProducts, setAllProducts] = useState<DisplayProduct[]>([]);
@@ -144,7 +148,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
 
           <motion.div
             className="relative z-10 flex w-full max-w-[980px] max-lg:max-w-full h-[700px] max-lg:h-full max-lg:max-h-screen flex-col overflow-hidden rounded-2xl max-lg:rounded-none shadow-modal lg:flex-row"
-            style={{ backgroundImage: `url(${modalBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+            style={{ backgroundImage: `url(${currentBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 20 }}
