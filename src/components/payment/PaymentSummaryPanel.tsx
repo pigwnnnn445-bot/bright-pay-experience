@@ -6,6 +6,7 @@ import { createOrder, getOrderStatus, cancelOrder, getAgreementLinks } from "@/a
 interface PaymentSummaryPanelProps {
   product: DisplayProduct | null;
   userId: string;
+  onPaymentSuccess?: (orderId: string) => void;
 }
 
 const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
