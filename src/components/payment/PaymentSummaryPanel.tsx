@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import type { DisplayProduct, PayMethod, PaymentOrder } from "@/types/payment";
+import type { DisplayProduct, PayMethod, PaymentOrder, AgreementLink } from "@/types/payment";
 import { QrCode, CheckCircle, Loader2 } from "lucide-react";
-import { createOrder, getOrderStatus, cancelOrder } from "@/api/payment";
+import { createOrder, getOrderStatus, cancelOrder, getAgreementLinks } from "@/api/payment";
 
 interface PaymentSummaryPanelProps {
   product: DisplayProduct | null;
@@ -13,8 +13,14 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
   const [order, setOrder] = useState<PaymentOrder | null>(null);
   const [paying, setPaying] = useState(false);
   const [payStatus, setPayStatus] = useState<"idle" | "paying" | "paid" | "failed">("idle");
+  const [agreements, setAgreements] = useState<AgreementLink[]>([]);
   const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const currentOrderIdRef = useRef<string | null>(null);
+
+  // Fetch agreement links
+  useEffect(() => {
+    getAgreementLinks().then(setAgreements);
+  }, []);
 
   // Clean up polling on unmount
   useEffect(() => {
@@ -245,8 +251,12 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
       {/* Footer */}
       <p className="mt-auto pt-4 text-center text-[10px] leading-relaxed text-text-muted">
         支付表示您已阅读并同意{" "}
-        <span className="text-primary cursor-pointer hover:underline">服务条款</span>{" "}
-        <span className="text-primary cursor-pointer hover:underline">隐私政策</span>
+        {agreements.map((a, i) => (
+          <span key={a.key}>
+            <a href={a.url} target="_blank" rel="noopener noreferrer" className="text-primary cursor-pointer hover:underline">{a.label}</a>
+            {i < agreements.length - 1 && " "}
+          </span>
+        ))}
       </p>
     </div>
   );

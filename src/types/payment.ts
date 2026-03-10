@@ -96,3 +96,9 @@ export interface OrderStatusResult {
   orderId: string;
   status: OrderStatus;
 }
+
+export interface AgreementLink {
+  key: string;
+  label: string;
+  url: string;
+}
