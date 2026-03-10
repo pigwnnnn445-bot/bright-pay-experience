@@ -36,6 +36,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
             onClick={() => onTabChange(tab.key)}
             className={cn(
               "relative flex-1 py-3 text-base font-medium transition-colors duration-300 cursor-pointer",
+              isLeft ? "rounded-tl-2xl" : "rounded-tr-2xl",
               isActive
                 ? "text-title font-semibold"
                 : "text-text-muted hover:text-text-secondary bg-white/60 backdrop-blur-[10px] dark:bg-transparent dark:backdrop-blur-none"
