@@ -162,8 +162,8 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
         {isPaid ? (
           /* Payment success */
           <div className="flex flex-col items-center justify-center gap-2">
-            <CheckCircle className="h-12 w-12 text-green-500" />
-            <p className="text-sm font-medium text-green-600">支付成功</p>
+            <CheckCircle className="h-12 w-12 text-theme-green" />
+            <p className="text-sm font-medium text-theme-green">支付成功</p>
           </div>
         ) : showQr ? (
           /* QR code display */
