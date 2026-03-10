@@ -100,6 +100,7 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
       startPolling(newOrder.orderId);
     } catch {
       setPayStatus("failed");
+      setShowFailModal(true);
     } finally {
       setPaying(false);
     }
