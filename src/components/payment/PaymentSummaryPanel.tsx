@@ -69,6 +69,7 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
           }
         } else if (result.status === "failed" || result.status === "cancelled" || result.status === "expired") {
           setPayStatus("failed");
+          setShowFailModal(true);
           if (pollingRef.current) {
             clearInterval(pollingRef.current);
             pollingRef.current = null;
