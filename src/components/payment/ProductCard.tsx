@@ -52,7 +52,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       )}>{product.title}</p>
 
       {/* Price */}
-      <div className={isAddon ? "absolute top-[64px]" : "mt-4"}>
+      <div className={isAddon ? "absolute top-[34%]" : "mt-4"}>
         <span className="inline-flex items-baseline text-primary" style={{ fontFamily: 'Gilroy, sans-serif', fontWeight: 700 }}>
           <span className="inline-block w-5 h-6 text-[20px] leading-6">{product.currency}</span>
           <span className="text-[32px] leading-[40px]">{product.salePrice.toFixed(2)}</span>
