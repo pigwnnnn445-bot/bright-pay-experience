@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import type { ProductType } from "@/types/payment";
 import { cn } from "@/lib/utils";
+import tabCurveLeft from "@/assets/tab-curve-left.webp";
+import tabCurveRight from "@/assets/tab-curve-right.webp";
 
 interface ProductTabsProps {
   activeTab: ProductType;
@@ -48,38 +50,20 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
 
             {/* Right curve when left tab (membership) is selected */}
             {isActive && isLeft && (
-              <div className="absolute bottom-0 -right-8 h-full w-8 z-0 pointer-events-none">
-                <svg
-                  width="100%"
-                  height="100%"
-                  viewBox="0 0 32 48"
-                  preserveAspectRatio="none"
-                  fill="none"
-                >
-                  <path
-                    d="M0 0 C18 0 32 16 32 48 L0 48 Z"
-                    className="fill-background"
-                  />
-                </svg>
-              </div>
+              <img
+                src={tabCurveRight}
+                alt=""
+                className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
+              />
             )}
 
             {/* Left curve when right tab (addon) is selected */}
             {isActive && !isLeft && (
-              <div className="absolute bottom-0 -left-8 h-full w-8 z-0 pointer-events-none">
-                <svg
-                  width="100%"
-                  height="100%"
-                  viewBox="0 0 32 48"
-                  preserveAspectRatio="none"
-                  fill="none"
-                >
-                  <path
-                    d="M32 0 C14 0 0 16 0 48 L32 48 Z"
-                    className="fill-background"
-                  />
-                </svg>
-              </div>
+              <img
+                src={tabCurveLeft}
+                alt=""
+                className="absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none"
+              />
             )}
           </button>
         );
