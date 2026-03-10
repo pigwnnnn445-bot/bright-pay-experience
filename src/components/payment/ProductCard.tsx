@@ -62,7 +62,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       {/* Original price */}
       <p className={cn(
         "text-xs text-text-muted line-through",
-        isAddon ? "absolute top-[112px]" : "mt-2"
+        isAddon ? "absolute top-[59%]" : "mt-2"
       )}>
         {product.currency}{product.originalPrice.toFixed(2)}
       </p>
