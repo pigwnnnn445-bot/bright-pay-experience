@@ -13,8 +13,14 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
   const [order, setOrder] = useState<PaymentOrder | null>(null);
   const [paying, setPaying] = useState(false);
   const [payStatus, setPayStatus] = useState<"idle" | "paying" | "paid" | "failed">("idle");
+  const [agreements, setAgreements] = useState<AgreementLink[]>([]);
   const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const currentOrderIdRef = useRef<string | null>(null);
+
+  // Fetch agreement links
+  useEffect(() => {
+    getAgreementLinks().then(setAgreements);
+  }, []);
 
   // Clean up polling on unmount
   useEffect(() => {
