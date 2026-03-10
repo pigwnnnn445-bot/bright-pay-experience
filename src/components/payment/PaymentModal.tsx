@@ -174,35 +174,40 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                   <UserProfileHeader user={user} loading={loading} />
 
                   {/* Wrapped content area */}
-                  <div className="mt-5 rounded-2xl max-lg:rounded-none bg-background p-4 max-lg:w-full">
+                  <div className="mt-5 max-lg:w-full">
                     {/* Tab switcher */}
-                    <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
-
-                    {/* Product cards */}
-                    <div className="mt-3">
-                      <ProductCardList
-                        products={filteredProducts}
-                        selectedId={selectedId}
-                        onSelect={handleSelect}
-                        loading={loading}
-                        productType={activeTab}
-                      />
+                    <div className="px-3">
+                      <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
                     </div>
 
-                    {/* Mobile: payment method selector */}
-                    {isMobile && (
-                      <div className="mt-5 px-1">
-                        <MobilePayMethodSelector
-                          payMethod={mobilePayMethod}
-                          onSwitch={setMobilePayMethod}
+                    {/* Content below tabs */}
+                    <div className="rounded-b-2xl max-lg:rounded-none bg-background p-4">
+                      {/* Product cards */}
+                      <div className="mt-1">
+                        <ProductCardList
+                          products={filteredProducts}
+                          selectedId={selectedId}
+                          onSelect={handleSelect}
+                          loading={loading}
+                          productType={activeTab}
                         />
                       </div>
-                    )}
 
-                    {/* Benefits - only for membership */}
-                    {activeTab === "membership" && (
-                      <BenefitSection benefits={filteredBenefits} loading={loading} />
-                    )}
+                      {/* Mobile: payment method selector */}
+                      {isMobile && (
+                        <div className="mt-5 px-1">
+                          <MobilePayMethodSelector
+                            payMethod={mobilePayMethod}
+                            onSwitch={setMobilePayMethod}
+                          />
+                        </div>
+                      )}
+
+                      {/* Benefits - only for membership */}
+                      {activeTab === "membership" && (
+                        <BenefitSection benefits={filteredBenefits} loading={loading} />
+                      )}
+                    </div>
                   </div>
                 </>
               )}
