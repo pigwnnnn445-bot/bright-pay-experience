@@ -180,33 +180,34 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
                       <ProductTabs activeTab={activeTab} onTabChange={handleTabChange} />
                     </div>
 
+                    {/* Content below tabs */}
                     <div className="rounded-b-2xl max-lg:rounded-none bg-background p-4">
-
-                    {/* Product cards */}
-                    <div className="mt-3">
-                      <ProductCardList
-                        products={filteredProducts}
-                        selectedId={selectedId}
-                        onSelect={handleSelect}
-                        loading={loading}
-                        productType={activeTab}
-                      />
-                    </div>
-
-                    {/* Mobile: payment method selector */}
-                    {isMobile && (
-                      <div className="mt-5 px-1">
-                        <MobilePayMethodSelector
-                          payMethod={mobilePayMethod}
-                          onSwitch={setMobilePayMethod}
+                      {/* Product cards */}
+                      <div className="mt-1">
+                        <ProductCardList
+                          products={filteredProducts}
+                          selectedId={selectedId}
+                          onSelect={handleSelect}
+                          loading={loading}
+                          productType={activeTab}
                         />
                       </div>
-                    )}
 
-                    {/* Benefits - only for membership */}
-                    {activeTab === "membership" && (
-                      <BenefitSection benefits={filteredBenefits} loading={loading} />
-                    )}
+                      {/* Mobile: payment method selector */}
+                      {isMobile && (
+                        <div className="mt-5 px-1">
+                          <MobilePayMethodSelector
+                            payMethod={mobilePayMethod}
+                            onSwitch={setMobilePayMethod}
+                          />
+                        </div>
+                      )}
+
+                      {/* Benefits - only for membership */}
+                      {activeTab === "membership" && (
+                        <BenefitSection benefits={filteredBenefits} loading={loading} />
+                      )}
+                    </div>
                   </div>
                 </>
               )}
