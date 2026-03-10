@@ -49,6 +49,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
   const [mobilePaying, setMobilePaying] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [paidOrderId, setPaidOrderId] = useState<string>("");
+  const [showFailModal, setShowFailModal] = useState(false);
 
   useEffect(() => {
     if (!open) return;
