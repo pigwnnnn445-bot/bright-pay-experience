@@ -32,6 +32,8 @@ interface PaymentModalProps {
 
 const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
   const isMobile = useIsMobile();
+  const { theme } = useTheme();
+  const currentBg = theme === "dark" ? modalBgDark : modalBg;
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<UserProfile | null>(null);
   const [allProducts, setAllProducts] = useState<DisplayProduct[]>([]);
