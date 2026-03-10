@@ -1,17 +1,116 @@
-import { useState } from "react";
-import type { DisplayProduct } from "@/types/payment";
-import { QrCode } from "lucide-react";
-
-type PayMethod = "wechat" | "alipay";
+import { useState, useEffect, useRef, useCallback } from "react";
+import type { DisplayProduct, PayMethod, PaymentOrder } from "@/types/payment";
+import { QrCode, CheckCircle, Loader2 } from "lucide-react";
+import { createOrder, getOrderStatus, cancelOrder } from "@/api/payment";
 
 interface PaymentSummaryPanelProps {
   product: DisplayProduct | null;
   userId: string;
-  onPay: (params: { skuId: string; skuCode: string; productType: string; userId: string }) => void;
 }
 
-const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProps) => {
+const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
   const [payMethod, setPayMethod] = useState<PayMethod>("wechat");
+  const [order, setOrder] = useState<PaymentOrder | null>(null);
+  const [paying, setPaying] = useState(false);
+  const [payStatus, setPayStatus] = useState<"idle" | "paying" | "paid" | "failed">("idle");
+  const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const currentOrderIdRef = useRef<string | null>(null);
+
+  // Clean up polling on unmount
+  useEffect(() => {
+    return () => {
+      if (pollingRef.current) clearInterval(pollingRef.current);
+    };
+  }, []);
+
+  // Reset state when product changes
+  useEffect(() => {
+    resetPayment();
+  }, [product?.configId]);
+
+  const resetPayment = useCallback(() => {
+    if (pollingRef.current) {
+      clearInterval(pollingRef.current);
+      pollingRef.current = null;
+    }
+    // Cancel existing order if paying
+    if (currentOrderIdRef.current && payStatus === "paying") {
+      cancelOrder(currentOrderIdRef.current);
+    }
+    currentOrderIdRef.current = null;
+    setOrder(null);
+    setPaying(false);
+    setPayStatus("idle");
+  }, [payStatus]);
+
+  const startPolling = useCallback((orderId: string) => {
+    if (pollingRef.current) clearInterval(pollingRef.current);
+
+    pollingRef.current = setInterval(async () => {
+      try {
+        const result = await getOrderStatus(orderId);
+        if (result.status === "paid") {
+          setPayStatus("paid");
+          if (pollingRef.current) {
+            clearInterval(pollingRef.current);
+            pollingRef.current = null;
+          }
+        } else if (result.status === "failed" || result.status === "cancelled" || result.status === "expired") {
+          setPayStatus("failed");
+          if (pollingRef.current) {
+            clearInterval(pollingRef.current);
+            pollingRef.current = null;
+          }
+        }
+      } catch {
+        // Keep polling on network errors
+      }
+    }, 2000);
+  }, []);
+
+  const handlePay = useCallback(async () => {
+    if (!product) return;
+    setPaying(true);
+    setPayStatus("idle");
+
+    try {
+      const newOrder = await createOrder({
+        skuId: product.skuId,
+        skuCode: product.skuCode,
+        productType: product.productType,
+        userId,
+        payMethod,
+      });
+      setOrder(newOrder);
+      currentOrderIdRef.current = newOrder.orderId;
+      setPayStatus("paying");
+      startPolling(newOrder.orderId);
+    } catch {
+      setPayStatus("failed");
+    } finally {
+      setPaying(false);
+    }
+  }, [product, userId, payMethod, startPolling]);
+
+  const handleSwitchPayMethod = useCallback(
+    (method: PayMethod) => {
+      if (method === payMethod) return;
+      // Reset and switch
+      if (pollingRef.current) {
+        clearInterval(pollingRef.current);
+        pollingRef.current = null;
+      }
+      if (currentOrderIdRef.current && payStatus === "paying") {
+        cancelOrder(currentOrderIdRef.current);
+      }
+      currentOrderIdRef.current = null;
+      setOrder(null);
+      setPayStatus("idle");
+      setPaying(false);
+      setPayMethod(method);
+    },
+    [payMethod, payStatus]
+  );
 
   if (!product) {
     return (
@@ -22,15 +121,8 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
   }
 
   const discount = product.originalPrice - product.salePrice;
-
-  const handlePay = () => {
-    onPay({
-      skuId: product.skuId,
-      skuCode: product.skuCode,
-      productType: product.productType,
-      userId,
-    });
-  };
+  const showQr = payStatus === "paying" && order?.qrCodeUrl;
+  const isPaid = payStatus === "paid";
 
   return (
     <div className="flex h-full flex-col items-center">
@@ -55,22 +147,51 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
         )}
       </div>
 
-      {/* QR code area with overlay text and button */}
-      <div className="relative mt-7 flex h-[164px] w-[164px] items-center justify-center rounded-lg border border-border bg-card-alt">
-        <QrCode className="h-10 w-10 text-text-muted" />
-        {/* Overlay */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-background/80 backdrop-blur-sm">
-          <p className="text-xs leading-relaxed text-text-secondary text-center">
-            开通前请阅读<br />下方协议说明
-          </p>
-          <button
-            type="button"
-            onClick={handlePay}
-            className="mt-4 w-[102px] h-[32px] rounded-lg bg-primary text-xs font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer"
-          >
-            同意并支付
-          </button>
-        </div>
+      {/* QR code area */}
+      <div className="relative mt-7 flex h-[164px] w-[164px] items-center justify-center rounded-lg border border-border bg-card-alt overflow-hidden">
+        {isPaid ? (
+          /* Payment success */
+          <div className="flex flex-col items-center justify-center gap-2">
+            <CheckCircle className="h-12 w-12 text-green-500" />
+            <p className="text-sm font-medium text-green-600">支付成功</p>
+          </div>
+        ) : showQr ? (
+          /* QR code display */
+          <img
+            src={order!.qrCodeUrl}
+            alt="支付二维码"
+            className="h-full w-full object-contain p-2"
+          />
+        ) : (
+          /* Default state with overlay */
+          <>
+            <QrCode className="h-10 w-10 text-text-muted" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-background/80 backdrop-blur-sm">
+              <p className="text-xs leading-relaxed text-text-secondary text-center">
+                开通前请阅读<br />下方协议说明
+              </p>
+              <button
+                type="button"
+                onClick={handlePay}
+                disabled={paying}
+                className="mt-4 w-[102px] h-[32px] rounded-lg bg-primary text-xs font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                {paying ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  "同意并支付"
+                )}
+              </button>
+            </div>
+          </>
+        )}
+
+        {/* Paying spinner overlay on QR */}
+        {payStatus === "paying" && showQr && (
+          <div className="absolute bottom-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-background/80">
+            <Loader2 className="h-3 w-3 animate-spin text-primary" />
+          </div>
+        )}
       </div>
 
       {/* Payment method label */}
@@ -83,7 +204,7 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
         {/* WeChat icon */}
         <button
           type="button"
-          onClick={() => setPayMethod("wechat")}
+          onClick={() => handleSwitchPayMethod("wechat")}
           className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 cursor-pointer ${
             payMethod === "wechat"
               ? "bg-[#07C160]/10 ring-2 ring-[#07C160]/40"
@@ -99,7 +220,7 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
         {/* Alipay icon */}
         <button
           type="button"
-          onClick={() => setPayMethod("alipay")}
+          onClick={() => handleSwitchPayMethod("alipay")}
           className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 cursor-pointer ${
             payMethod === "alipay"
               ? "bg-[#1677FF]/10 ring-2 ring-[#1677FF]/40"
@@ -112,6 +233,14 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
           </svg>
         </button>
       </div>
+
+      {/* Status text */}
+      {payStatus === "paying" && (
+        <p className="mt-2 text-xs text-text-muted animate-pulse">等待支付中...</p>
+      )}
+      {payStatus === "failed" && (
+        <p className="mt-2 text-xs text-destructive">支付失败，请重试</p>
+      )}
 
       {/* Footer */}
       <p className="mt-auto pt-4 text-center text-[10px] leading-relaxed text-text-muted">
