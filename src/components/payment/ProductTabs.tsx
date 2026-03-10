@@ -1,8 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import type { ProductType } from "@/types/payment";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 import tabCurveLeft from "@/assets/tab-curve-left.webp";
 import tabCurveRight from "@/assets/tab-curve-right.webp";
+import tabCurveLeftDark from "@/assets/tab-curve-left-dark.webp";
+import tabCurveRightDark from "@/assets/tab-curve-right-dark.webp";
 
 interface ProductTabsProps {
   activeTab: ProductType;
@@ -15,6 +18,11 @@ const tabs: { key: ProductType; label: string }[] = [
 ];
 
 const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+  const curveLeft = isDark ? tabCurveLeftDark : tabCurveLeft;
+  const curveRight = isDark ? tabCurveRightDark : tabCurveRight;
+
   return (
     <div className="relative flex w-full">
       {tabs.map((tab) => {
@@ -53,7 +61,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
               {isActive && isLeft && (
                 <motion.img
                   key="curve-left"
-                  src={tabCurveLeft}
+                  src={curveLeft}
                   alt=""
                   className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
                   initial={{ opacity: 0 }}
@@ -65,7 +73,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
               {isActive && !isLeft && (
                 <motion.img
                   key="curve-right"
-                  src={tabCurveRight}
+                  src={curveRight}
                   alt=""
                   className="absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none"
                   initial={{ opacity: 0 }}
