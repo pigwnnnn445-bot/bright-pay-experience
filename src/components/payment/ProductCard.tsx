@@ -47,12 +47,12 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       </div>
 
       {/* Original price */}
-      <p className="mt-1 text-xs text-text-muted line-through">
+      <p className="mt-2 text-xs text-text-muted line-through">
         {product.currency}{product.originalPrice.toFixed(2)}
       </p>
 
       {/* Sub text */}
-      <p className={cn("text-xs font-medium py-1 px-[10px] rounded-[10px] break-words overflow-hidden mx-1 mt-1 w-[calc(100%-8px)] bg-payment-bg-1/10", selected ? "text-payment-text-1" : "text-title")}>
+      <p className={cn("text-xs font-medium py-1 px-[10px] rounded-[10px] break-words overflow-hidden mx-1 mt-4 w-[calc(100%-8px)] bg-payment-bg-1/10", selected ? "text-payment-text-1" : "text-title")}>
         {product.subTitle}
       </p>
     </button>
