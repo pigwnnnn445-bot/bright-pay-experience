@@ -263,6 +263,12 @@ const PaymentSummaryPanel = ({ product, userId }: PaymentSummaryPanelProps) => {
           </span>
         ))}
       </p>
+
+      <PaymentSuccessModal
+        open={showSuccessModal}
+        orderId={paidOrderId}
+        onClose={() => setShowSuccessModal(false)}
+      />
     </div>
   );
 };
