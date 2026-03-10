@@ -13,12 +13,12 @@ const tabs: { key: ProductType; label: string }[] = [
 ];
 
 const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
-  const activeIndex = tabs.findIndex((t) => t.key === activeTab);
-
   return (
     <div className="relative flex w-full">
-      {tabs.map((tab, index) => {
+      {tabs.map((tab) => {
         const isActive = activeTab === tab.key;
+        const isLeft = tab.key === "membership";
+
         return (
           <button
             key={tab.key}
@@ -32,52 +32,58 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
             )}
           >
             <span className="relative z-10">{tab.label}</span>
+
+            {/* Selected tab background */}
             {isActive && (
               <motion.div
                 layoutId="tab-bg"
                 className="absolute inset-0 bg-background"
                 style={{
-                  borderRadius: "16px 16px 0 0",
+                  borderRadius: isLeft ? "16px 0 0 0" : "0 16px 0 0",
                   zIndex: 0,
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
             )}
-            {/* Left curve connector */}
-            {isActive && (
-              <motion.div
-                layoutId="tab-curve-left"
-                className="absolute bottom-0 -left-3 h-3 w-3 z-0"
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              >
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+
+            {/* Right curve when left tab (membership) is selected */}
+            {isActive && isLeft && (
+              <div className="absolute bottom-0 -right-8 h-full w-8 z-0 pointer-events-none">
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 32 48"
+                  preserveAspectRatio="none"
+                  fill="none"
+                >
                   <path
-                    d="M12 12H0V0C0 0 0 12 12 12Z"
+                    d="M0 0 C18 0 32 16 32 48 L0 48 Z"
                     className="fill-background"
                   />
                 </svg>
-              </motion.div>
+              </div>
             )}
-            {/* Right curve connector */}
-            {isActive && (
-              <motion.div
-                layoutId="tab-curve-right"
-                className="absolute bottom-0 -right-3 h-3 w-3 z-0"
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              >
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+
+            {/* Left curve when right tab (addon) is selected */}
+            {isActive && !isLeft && (
+              <div className="absolute bottom-0 -left-8 h-full w-8 z-0 pointer-events-none">
+                <svg
+                  width="100%"
+                  height="100%"
+                  viewBox="0 0 32 48"
+                  preserveAspectRatio="none"
+                  fill="none"
+                >
                   <path
-                    d="M0 12H12V0C12 0 12 12 0 12Z"
+                    d="M32 0 C14 0 0 16 0 48 L32 48 Z"
                     className="fill-background"
                   />
                 </svg>
-              </motion.div>
+              </div>
             )}
           </button>
         );
       })}
-      {/* Background bar behind tabs */}
-      <div className="absolute inset-0 rounded-t-2xl bg-card-alt -z-10" />
     </div>
   );
 };
