@@ -50,25 +50,27 @@ const PaymentSummaryPanel = ({ product, userId, onPay }: PaymentSummaryPanelProp
         )}
       </div>
 
-      {/* Agreement notice */}
-      <div className="mt-5 w-full rounded-xl bg-card-alt p-4 text-center">
-        <p className="text-xs leading-relaxed text-text-secondary">
-          开通前请阅读<br />下方协议说明
-        </p>
-        <button
-          type="button"
-          onClick={handlePay}
-          className="mt-3 w-full rounded-lg bg-gradient-to-r from-theme-purple to-theme-green py-2.5 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer"
-        >
-          同意并支付
-        </button>
+      {/* QR code area with overlay text and button */}
+      <div className="relative mt-5 flex h-[164px] w-[164px] items-center justify-center rounded-lg border border-border bg-card-alt">
+        <QrCode className="h-10 w-10 text-text-muted" />
+        {/* Overlay */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-background/80 backdrop-blur-sm">
+          <p className="text-xs leading-relaxed text-text-secondary text-center">
+            开通前请阅读<br />下方协议说明
+          </p>
+          <button
+            type="button"
+            onClick={handlePay}
+            className="mt-3 rounded-lg bg-gradient-to-r from-theme-purple to-theme-green px-6 py-2 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 active:scale-[0.98] cursor-pointer"
+          >
+            同意并支付
+          </button>
+        </div>
       </div>
 
-      {/* QR code placeholder */}
-      <div className="mt-5 flex items-center justify-center">
-        <div className="flex h-[164px] w-[164px] items-center justify-center rounded-lg border border-border bg-card-alt">
-          <QrCode className="h-10 w-10 text-text-muted" />
-        </div>
+      {/* WeChat section */}
+      <div className="mt-4 text-center">
+        <p className="text-sm text-text-secondary">微信扫码支付</p>
       </div>
 
       {/* Footer */}
