@@ -14,7 +14,7 @@ const tabs: { key: ProductType; label: string }[] = [
 
 const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
   return (
-    <div className="relative flex w-full rounded-2xl p-1" style={{ background: "rgba(255, 255, 255, 0.6)" }}>
+    <div className="relative flex w-full rounded-2xl bg-card-alt p-1">
       {tabs.map((tab) => (
         <button
           key={tab.key}
