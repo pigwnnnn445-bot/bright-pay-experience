@@ -265,6 +265,11 @@ const PaymentSummaryPanel = ({ product, userId, onPaymentSuccess }: PaymentSumma
         <p className="mt-2 text-xs text-destructive">支付失败，请重试</p>
       )}
 
+      <PaymentFailModal
+        open={showFailModal}
+        onClose={() => setShowFailModal(false)}
+      />
+
       {/* Footer */}
       <p className="mt-auto pt-4 text-center text-[10px] leading-relaxed text-text-muted">
         支付表示您已阅读并同意{" "}
