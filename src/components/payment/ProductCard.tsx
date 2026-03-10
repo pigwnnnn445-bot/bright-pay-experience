@@ -64,12 +64,16 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
         {product.currency}{product.originalPrice.toFixed(2)}
       </p>
 
-      {/* Sub text - membership only */}
-      {!isAddon && (
-        <p className={cn("absolute left-[2px] top-[140px] w-[160px] h-[40px] rounded-[10px] text-xs font-medium flex items-center justify-center break-words overflow-hidden", selected ? "text-payment-text-1 bg-payment-bg-1/10" : "text-title bg-[#F2F2F5]")}>
-          {product.subTitle}
-        </p>
-      )}
+      {/* Sub text */}
+      <p className={cn(
+        "absolute rounded-[10px] text-xs font-medium flex items-center justify-center break-words overflow-hidden",
+        isAddon
+          ? "left-[2px] top-[148px] w-[298px] h-[40px]"
+          : "left-[2px] top-[140px] w-[160px] h-[40px]",
+        selected ? "text-payment-text-1 bg-payment-bg-1/10" : "text-title bg-[#F2F2F5]"
+      )}>
+        {product.subTitle}
+      </p>
     </button>
   );
 };
