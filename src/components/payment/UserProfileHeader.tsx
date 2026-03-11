@@ -1,5 +1,5 @@
-import type { UserProfile } from "@/types/payment";
-import { Crown } from "lucide-react";
+import type { UserProfile, SubscriptionType } from "@/types/payment";
+import { Crown, Infinity, User } from "lucide-react";
 
 interface UserProfileHeaderProps {
   user: UserProfile | null;
