@@ -46,16 +46,14 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
           >
             <span className="relative z-10">{tab.label}</span>
 
-            {/* Selected tab background with shared layoutId for smooth sliding */}
+            {/* Selected tab background */}
             {isActive && (
-              <motion.div
-                layoutId="tab-bg"
+              <div
                 className="absolute inset-0 bg-background"
                 style={{
                   borderRadius: isLeft ? "16px 0 0 0" : "0 16px 0 0",
                   zIndex: 0,
                 }}
-                transition={springTransition}
               />
             )}
 
