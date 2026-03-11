@@ -10,7 +10,7 @@ const badgeConfig: Record<SubscriptionType, { label: string; icon: React.ReactNo
   pro: {
     label: "Pro",
     icon: <Crown className="h-2.5 w-2.5" />,
-    className: "bg-gradient-to-r from-theme-purple to-theme-green text-primary-foreground",
+    className: "bg-[rgba(82,82,229,0.15)] text-[#5252E5] dark:bg-[rgba(111,214,180,0.15)] dark:text-[#6FD6B4]",
   },
   addon: {
     label: "永久有效",
@@ -27,9 +27,11 @@ const badgeConfig: Record<SubscriptionType, { label: string; icon: React.ReactNo
 const SubscriptionBadge = ({ type }: { type: SubscriptionType }) => {
   const config = badgeConfig[type];
   const isFree = type === "free";
+  const isAddon = type === "addon";
+  const useCompactStyle = isFree || type === "pro";
   return (
-    <span className={`inline-flex items-center justify-center gap-0.5 font-semibold ${isFree ? "rounded-[4px] px-0 py-0 text-[10px] w-[27px] h-[16px]" : "rounded-full px-2 py-0.5 text-[10px]"} ${config.className}`}>
-      {!isFree && config.icon}
+    <span className={`inline-flex items-center justify-center font-semibold ${useCompactStyle ? "rounded-[4px] text-[10px] w-[27px] h-[16px] px-[6px] py-[2px]" : "rounded-full px-2 py-0.5 text-[10px] gap-0.5"} ${config.className}`}>
+      {isAddon && config.icon}
       {config.label}
     </span>
   );
