@@ -37,7 +37,7 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
             type="button"
             onClick={() => onTabChange(tab.key)}
             className={cn(
-              "relative flex-1 text-base font-medium transition-colors duration-300 cursor-pointer",
+              "relative flex-1 text-base font-medium cursor-pointer",
               isLeft ? "rounded-tl-2xl" : "rounded-tr-2xl",
               isActive
                 ? "h-[52px] flex items-center justify-center text-title font-semibold z-10"
