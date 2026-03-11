@@ -17,6 +17,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
       <button
         type="button"
         disabled={disabled}
+        data-config-id={product.configId}
         onClick={() => !disabled && onSelect(product)}
         className={cn(
           "relative flex w-full flex-col items-center rounded-xl border-2 text-center transition-all duration-200 cursor-pointer pb-0",
