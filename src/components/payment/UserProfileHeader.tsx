@@ -26,9 +26,10 @@ const badgeConfig: Record<SubscriptionType, { label: string; icon: React.ReactNo
 
 const SubscriptionBadge = ({ type }: { type: SubscriptionType }) => {
   const config = badgeConfig[type];
+  const isFree = type === "free";
   return (
-    <span className={`inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[10px] font-semibold ${config.className}`}>
-      {config.icon}
+    <span className={`inline-flex items-center justify-center gap-0.5 font-semibold ${isFree ? "rounded-[4px] px-0 py-0 text-[10px] w-[27px] h-[16px]" : "rounded-full px-2 py-0.5 text-[10px]"} ${config.className}`}>
+      {!isFree && config.icon}
       {config.label}
     </span>
   );
