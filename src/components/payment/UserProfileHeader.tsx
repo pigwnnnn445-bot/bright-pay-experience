@@ -85,7 +85,7 @@ const UserProfileHeader = ({ user, loading }: UserProfileHeaderProps) => {
           <span className="text-sm font-semibold text-title">{user.nickname}</span>
           <SubscriptionBadge type={user.subscriptionType} />
         </div>
-        {user.subscriptionType !== "free" && user.expireTip && (
+        {user.subscriptionType === "pro" && user.expireTip && (
           <p className="text-xs text-text-muted dark:text-text-secondary">{user.expireTip}</p>
         )}
       </div>
