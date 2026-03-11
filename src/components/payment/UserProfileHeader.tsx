@@ -13,9 +13,9 @@ const badgeConfig: Record<SubscriptionType, { label: string; icon: React.ReactNo
     className: "bg-[rgba(82,82,229,0.15)] text-[#5252E5] dark:bg-[rgba(111,214,180,0.15)] dark:text-[#6FD6B4]",
   },
   addon: {
-    label: "永久有效",
+    label: "配额永久有效",
     icon: <Infinity className="h-2.5 w-2.5" />,
-    className: "bg-gradient-to-r from-[hsl(10,90%,70%)] to-[hsl(320,70%,75%)] text-primary-foreground",
+    className: "bg-[rgba(82,82,229,0.15)] text-[#5252E5] dark:bg-[rgba(111,214,180,0.15)] dark:text-[#6FD6B4]",
   },
   free: {
     label: "免费",
