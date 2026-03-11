@@ -57,19 +57,25 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
               />
             )}
 
-            {/* Curve connectors */}
-            {isLeft && isActive && (
+            {/* Curve connectors — always mounted, visibility toggled */}
+            {isLeft && (
               <img
                 src={curveLeft}
                 alt=""
-                className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
+                className={cn(
+                  "absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none",
+                  isActive ? "visible" : "invisible"
+                )}
               />
             )}
-            {!isLeft && isActive && (
+            {!isLeft && (
               <img
                 src={curveRight}
                 alt=""
-                className="absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none"
+                className={cn(
+                  "absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none",
+                  isActive ? "visible" : "invisible"
+                )}
               />
             )}
           </button>
