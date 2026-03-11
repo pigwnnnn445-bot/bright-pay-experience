@@ -137,7 +137,7 @@
     scrollbar-width: thin;
   }
   .scrollbar-thin::-webkit-scrollbar {
-    width: 1px;
+    width: 0.5px;
   }
   .scrollbar-thin::-webkit-scrollbar-track {
     background: transparent;
