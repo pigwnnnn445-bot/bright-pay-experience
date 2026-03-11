@@ -133,17 +133,11 @@
     font-family: Inter, -apple-system, "system-ui", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
-  .scrollbar-thin {
-    scrollbar-width: thin;
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 0.1px;
-  }
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: hsl(var(--border));
-    border-radius: 1px;
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

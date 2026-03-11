@@ -167,7 +167,7 @@ const PaymentModal = ({ open, onClose }: PaymentModalProps) => {
             </button>
 
             {/* Main content */}
-            <div className="flex-1 overflow-y-auto scrollbar-thin p-6 max-lg:px-0 max-lg:pb-4">
+            <div className="flex-1 overflow-y-auto scrollbar-hide p-6 max-lg:px-0 max-lg:pb-4">
               {error ? (
                 <div className="flex h-48 items-center justify-center">
                   <p className="text-sm text-destructive">{error}</p>
