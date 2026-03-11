@@ -26,12 +26,12 @@ const badgeConfig: Record<SubscriptionType, { label: string; icon: React.ReactNo
 
 const SubscriptionBadge = ({ type }: { type: SubscriptionType }) => {
   const config = badgeConfig[type];
-  const isFree = type === "free";
   const isAddon = type === "addon";
-  const useCompactStyle = isFree || type === "pro";
+  const sizeClass = isAddon
+    ? "rounded-[4px] text-[10px] w-[72px] h-[16px] px-[6px] py-[2px]"
+    : "rounded-[4px] text-[10px] w-[27px] h-[16px] px-[6px] py-[2px]";
   return (
-    <span className={`inline-flex items-center justify-center font-semibold ${useCompactStyle ? "rounded-[4px] text-[10px] w-[27px] h-[16px] px-[6px] py-[2px]" : "rounded-full px-2 py-0.5 text-[10px] gap-0.5"} ${config.className}`}>
-      {isAddon && config.icon}
+    <span className={`inline-flex items-center justify-center font-semibold ${sizeClass} ${config.className}`}>
       {config.label}
     </span>
   );
