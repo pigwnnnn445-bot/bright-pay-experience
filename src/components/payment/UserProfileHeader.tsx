@@ -13,9 +13,9 @@ const badgeConfig: Record<SubscriptionType, { label: string; icon: React.ReactNo
     className: "bg-[rgba(82,82,229,0.15)] text-[#5252E5] dark:bg-[rgba(111,214,180,0.15)] dark:text-[#6FD6B4]",
   },
   addon: {
-    label: "永久有效",
+    label: "配额永久有效",
     icon: <Infinity className="h-2.5 w-2.5" />,
-    className: "bg-gradient-to-r from-[hsl(10,90%,70%)] to-[hsl(320,70%,75%)] text-primary-foreground",
+    className: "bg-[rgba(82,82,229,0.15)] text-[#5252E5] dark:bg-[rgba(111,214,180,0.15)] dark:text-[#6FD6B4]",
   },
   free: {
     label: "免费",
@@ -26,12 +26,12 @@ const badgeConfig: Record<SubscriptionType, { label: string; icon: React.ReactNo
 
 const SubscriptionBadge = ({ type }: { type: SubscriptionType }) => {
   const config = badgeConfig[type];
-  const isFree = type === "free";
   const isAddon = type === "addon";
-  const useCompactStyle = isFree || type === "pro";
+  const sizeClass = isAddon
+    ? "rounded-[4px] text-[10px] w-[72px] h-[16px] px-[6px] py-[2px]"
+    : "rounded-[4px] text-[10px] w-[27px] h-[16px] px-[6px] py-[2px]";
   return (
-    <span className={`inline-flex items-center justify-center font-semibold ${useCompactStyle ? "rounded-[4px] text-[10px] w-[27px] h-[16px] px-[6px] py-[2px]" : "rounded-full px-2 py-0.5 text-[10px] gap-0.5"} ${config.className}`}>
-      {isAddon && config.icon}
+    <span className={`inline-flex items-center justify-center font-semibold ${sizeClass} ${config.className}`}>
       {config.label}
     </span>
   );
