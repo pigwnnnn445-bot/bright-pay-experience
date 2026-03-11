@@ -10,7 +10,7 @@ const badgeConfig: Record<SubscriptionType, { label: string; icon: React.ReactNo
   pro: {
     label: "Pro",
     icon: <Crown className="h-2.5 w-2.5" />,
-    className: "bg-gradient-to-r from-theme-purple to-theme-green text-primary-foreground",
+    className: "bg-[rgba(82,82,229,0.15)] text-[#5252E5] dark:bg-[rgba(111,214,180,0.15)] dark:text-[#6FD6B4]",
   },
   addon: {
     label: "永久有效",
