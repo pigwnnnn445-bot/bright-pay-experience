@@ -34,7 +34,7 @@ const SubscriptionBadge = ({ type }: { type: SubscriptionType }) => {
   );
 };
 
-
+const UserProfileHeader = ({ user, loading }: UserProfileHeaderProps) => {
   if (loading) {
     return (
       <div className="flex items-center gap-3">
