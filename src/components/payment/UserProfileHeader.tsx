@@ -59,7 +59,7 @@ const UserProfileHeader = ({ user, loading }: UserProfileHeaderProps) => {
             </span>
           )}
         </div>
-        <p className="text-xs text-text-muted">{user.expireTip}</p>
+        <p className="text-xs text-text-muted dark:text-text-secondary">{user.expireTip}</p>
       </div>
     </div>
   );
