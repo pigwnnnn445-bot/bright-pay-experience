@@ -20,7 +20,7 @@ const badgeConfig: Record<SubscriptionType, { label: string; icon: React.ReactNo
   free: {
     label: "免费",
     icon: <User className="h-2.5 w-2.5" />,
-    className: "bg-muted text-muted-foreground",
+    className: "bg-[rgba(120,120,122,0.15)] text-[#78787A] dark:bg-[rgba(230,230,240,0.15)] dark:text-[#E6E6F0]",
   },
 };
 
