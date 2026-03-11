@@ -26,7 +26,7 @@ const BenefitItem = ({ benefit }: BenefitItemProps) => {
 
   return (
     <div className="flex items-start gap-3 py-2.5">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#E5E5FF] dark:bg-[#232328]">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E5E5FF] dark:bg-[#232328]">
         {hasSvg ? (
           <img src={benefit.iconUrl} alt={benefit.title} className="h-5 w-5" />
         ) : (
