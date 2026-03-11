@@ -46,36 +46,30 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
           >
             <span className="relative z-10">{tab.label}</span>
 
-            {/* Selected tab background with shared layoutId for smooth sliding */}
+            {/* Selected tab background */}
             {isActive && (
-              <motion.div
-                layoutId="tab-bg"
+              <div
                 className="absolute inset-0 bg-background"
                 style={{
                   borderRadius: isLeft ? "16px 0 0 0" : "0 16px 0 0",
                   zIndex: 0,
                 }}
-                transition={springTransition}
               />
             )}
 
-            {/* Curve connectors — always rendered, spring-synced opacity */}
-            {isLeft && (
-              <motion.img
+            {/* Curve connectors */}
+            {isLeft && isActive && (
+              <img
                 src={curveLeft}
                 alt=""
                 className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
-                animate={{ opacity: isActive ? 1 : 0 }}
-                transition={springTransition}
               />
             )}
-            {!isLeft && (
-              <motion.img
+            {!isLeft && isActive && (
+              <img
                 src={curveRight}
                 alt=""
                 className="absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none"
-                animate={{ opacity: isActive ? 1 : 0 }}
-                transition={springTransition}
               />
             )}
           </button>
