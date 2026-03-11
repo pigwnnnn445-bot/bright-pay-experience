@@ -6,7 +6,35 @@ interface UserProfileHeaderProps {
   loading?: boolean;
 }
 
-const UserProfileHeader = ({ user, loading }: UserProfileHeaderProps) => {
+const badgeConfig: Record<SubscriptionType, { label: string; icon: React.ReactNode; className: string }> = {
+  pro: {
+    label: "Pro",
+    icon: <Crown className="h-2.5 w-2.5" />,
+    className: "bg-gradient-to-r from-theme-purple to-theme-green text-primary-foreground",
+  },
+  addon: {
+    label: "永久有效",
+    icon: <Infinity className="h-2.5 w-2.5" />,
+    className: "bg-gradient-to-r from-[hsl(10,90%,70%)] to-[hsl(320,70%,75%)] text-primary-foreground",
+  },
+  free: {
+    label: "免费",
+    icon: <User className="h-2.5 w-2.5" />,
+    className: "bg-muted text-muted-foreground",
+  },
+};
+
+const SubscriptionBadge = ({ type }: { type: SubscriptionType }) => {
+  const config = badgeConfig[type];
+  return (
+    <span className={`inline-flex items-center gap-0.5 rounded-full px-2 py-0.5 text-[10px] font-semibold ${config.className}`}>
+      {config.icon}
+      {config.label}
+    </span>
+  );
+};
+
+
   if (loading) {
     return (
       <div className="flex items-center gap-3">
