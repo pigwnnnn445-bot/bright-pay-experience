@@ -26,7 +26,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
             : "border-border-card bg-background hover:border-primary/30",
           disabled && "pointer-events-none opacity-40"
         )}
-        style={selected ? { background: "linear-gradient(180deg, rgba(82, 82, 229, 0.08) 0%, rgba(82, 82, 229, 0) 50%)" } : undefined}
+        style={selected ? { background: "var(--card-selected-gradient)" } : undefined}
       >
         {/* Badge */}
         {product.badgeText && (
@@ -79,7 +79,7 @@ const ProductCard = ({ product, selected, onSelect, variant = "default" }: Produ
           : "border-border-card bg-background hover:border-primary/30",
         disabled && "pointer-events-none opacity-40"
       )}
-      style={selected ? { background: "linear-gradient(180deg, rgba(82, 82, 229, 0.08) 0%, rgba(82, 82, 229, 0) 50%)" } : undefined}
+      style={selected ? { background: "var(--card-selected-gradient)" } : undefined}
     >
       {/* Badge */}
       {product.badgeText && (
