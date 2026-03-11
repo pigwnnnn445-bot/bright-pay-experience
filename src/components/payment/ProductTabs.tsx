@@ -57,23 +57,19 @@ const ProductTabs = ({ activeTab, onTabChange }: ProductTabsProps) => {
               />
             )}
 
-            {/* Curve connectors — always rendered, spring-synced opacity */}
-            {isLeft && (
-              <motion.img
+            {/* Curve connectors */}
+            {isLeft && isActive && (
+              <img
                 src={curveLeft}
                 alt=""
                 className="absolute bottom-0 -right-6 h-full w-6 z-0 pointer-events-none"
-                animate={{ opacity: isActive ? 1 : 0 }}
-                transition={springTransition}
               />
             )}
-            {!isLeft && (
-              <motion.img
+            {!isLeft && isActive && (
+              <img
                 src={curveRight}
                 alt=""
                 className="absolute bottom-0 -left-6 h-full w-6 z-0 pointer-events-none"
-                animate={{ opacity: isActive ? 1 : 0 }}
-                transition={springTransition}
               />
             )}
           </button>
