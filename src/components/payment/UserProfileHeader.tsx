@@ -52,12 +52,7 @@ const UserProfileHeader = ({ user, loading }: UserProfileHeaderProps) => {
       <div>
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold text-title">{user.nickname}</span>
-          {user.badge && (
-            <span className="inline-flex items-center gap-0.5 rounded-full bg-gradient-to-r from-theme-purple to-theme-green px-2 py-0.5 text-[10px] font-semibold text-primary-foreground">
-              <Crown className="h-2.5 w-2.5" />
-              {user.badge}
-            </span>
-          )}
+          <SubscriptionBadge type={user.subscriptionType} />
         </div>
         <p className="text-xs text-text-muted dark:text-text-secondary">{user.expireTip}</p>
       </div>

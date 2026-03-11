@@ -1,10 +1,12 @@
 // Payment domain types
 
+export type SubscriptionType = "pro" | "addon" | "free";
+
 export interface UserProfile {
   id: string;
   avatar: string;
   nickname: string;
-  badge: string;
+  subscriptionType: SubscriptionType;
   expireTime: string;
   expireTip: string;
 }
