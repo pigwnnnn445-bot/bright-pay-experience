@@ -39,6 +39,7 @@ export interface BenefitConfig {
   benefitId: string;
   productType: ProductType;
   icon: string;
+  iconUrl?: string;
   title: string;
   description: string;
   isOnline: boolean;
