@@ -121,6 +121,7 @@
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 240 5% 28%;
     --sidebar-ring: 240 73.9% 61%;
+    --card-selected-gradient: linear-gradient(180deg, rgba(111, 214, 180, 0.08) 0%, rgba(111, 214, 180, 0) 50%);
   }
 }
 
