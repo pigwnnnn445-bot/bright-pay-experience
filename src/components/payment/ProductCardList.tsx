@@ -31,6 +31,15 @@ const ProductCardList = ({ products, selectedId, onSelect, loading, productType 
     return () => el?.removeEventListener("scroll", checkScroll);
   }, [products]);
 
+  useEffect(() => {
+    if (!selectedId || !scrollRef.current) return;
+    const container = scrollRef.current;
+    const selectedEl = container.querySelector(`[data-config-id="${selectedId}"]`) as HTMLElement | null;
+    if (selectedEl) {
+      selectedEl.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
+    }
+  }, [selectedId]);
+
   const scroll = (dir: "left" | "right") => {
     scrollRef.current?.scrollBy({ left: dir === "right" ? 200 : -200, behavior: "smooth" });
   };
