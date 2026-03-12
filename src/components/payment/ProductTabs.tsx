@@ -13,7 +13,7 @@ interface ProductTabsProps {
 }
 
 const tabs: { key: ProductType; label: string }[] = [
-  { key: "membership", label: "会员套餐" },
+  { key: "membership", label: "Pro套餐" },
   { key: "addon", label: "加量包" },
 ];
 
