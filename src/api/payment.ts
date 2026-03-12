@@ -17,7 +17,7 @@ const mockUserProfile: UserProfile = {
   id: "u_001",
   avatar: "",
   nickname: "Alex Chen",
-  subscriptionType: "addon",
+  subscriptionType: "pro",
   expireTime: "2026/12/28",
   expireTip: "您的会员将于 2026/12/28 到期，购买后有效期顺延",
 };
